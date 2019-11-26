@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { ThemeContext } from 'styled-components';
+import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 
@@ -11,8 +11,6 @@ type Props = {
 };
 
 const IndexPage: React.FC<Props> = props => {
-  const theme = React.useContext(ThemeContext);
-
   return (
     <Layout>
       <SEO title="Home" />
