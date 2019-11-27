@@ -67,6 +67,9 @@ const HeroTitle = styled.h1`
   font-size: 24px;
   margin-bottom: 1em;
   font-weight: bold;
+  ${p => p.theme.l} {
+    margin-top: 1em;
+  }
 `;
 
 const HeroSub = styled.p`

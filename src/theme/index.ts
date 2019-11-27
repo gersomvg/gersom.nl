@@ -1,3 +1,5 @@
+import { css } from 'styled-components';
+
 const theme = {
   // Media queries
   s: '@media (max-width: 420px)',
