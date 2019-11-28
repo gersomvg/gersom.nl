@@ -15,12 +15,12 @@ const theme = {
 
   // Colors
   color: {
-    bodyBg: 'white',
-    bodyBgDark: '#181818',
-    accent: '#007AFF',
-    accentLight: '#65AFFF',
-    text: 'black',
-    textLight: 'rgba(255,255,255,0.7)',
+    bodyBg: 'rgba(255, 255, 255, 1)',
+    bodyBgDark: 'rgba(24, 24, 24, 1)',
+    accent: 'rgba(0, 122, 255, 1)',
+    accentLight: 'rgba(101, 175, 255, 1)',
+    text: 'rgba(0, 0, 0, 1)',
+    textLight: 'rgba(255, 255, 255, 0.7)',
   },
 };
 

@@ -18,6 +18,16 @@ const ULStyled = styled.ul`
   margin: 1em 0;
   width: 100%;
   max-width: ${p => p.theme.pageMaxWidth};
+  padding-left: 2em;
+  text-indent: -2em;
+  > {
+    :before {
+      content: '▪︎';
+      display: inline-block;
+      width: 2em;
+      text-indent: 0;
+    }
+  }
 `;
 
 // OL
@@ -50,4 +60,6 @@ export const Li: React.FC<LiProps> = props => (
   <LiStyled className={props.className}>{props.children}</LiStyled>
 );
 
-const LiStyled = styled.li``;
+const LiStyled = styled.li`
+  padding: 0.2em 0;
+`;

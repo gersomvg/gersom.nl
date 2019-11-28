@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import opacity from '../../theme/opacity';
+
 export type AProps = {
   children?: React.ReactNode;
   className?: string;
@@ -14,23 +16,25 @@ export const A: React.FC<AProps> = props => (
 );
 
 const AStyled = styled.a`
-  font-size: 18px;
-  line-height: 1.55;
+  font-weight: bold;
   color: ${p => p.theme.color.accent};
   text-decoration: none;
-  display: inline-block;
+  display: inline;
   position: relative;
+  border-bottom: 2px solid ${p => opacity(p.theme.color.accent, 0.2)};
+  border-radius: 2px;
   ${p => p.theme.dark} {
     color: ${p => p.theme.color.accentLight};
+    border-color: ${p => opacity(p.theme.color.accentLight, 0.2)};
   }
-  :before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-top: 2px solid currentColor;
-    opacity: 0.38;
+  :hover,
+  :focus {
+    background-color: ${p => opacity(p.theme.color.accent, 0.05)};
+    border-color: ${p => opacity(p.theme.color.accent, 0.5)};
+    ${p => p.theme.dark} {
+      background-color: ${p => opacity(p.theme.color.accentLight, 0.1)};
+      border-color: ${p => opacity(p.theme.color.accentLight, 0.5)};
+    }
   }
 `;
 
