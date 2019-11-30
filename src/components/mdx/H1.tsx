@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export type TitleProps = {
+export type H1Props = {
   children?: React.ReactNode;
   className?: string;
 };
 
-const Title: React.FC<TitleProps> = props => (
+const H1: React.FC<H1Props> = props => (
   <Container className={props.className}>{props.children}</Container>
 );
 
@@ -15,7 +15,7 @@ const Container = styled.h1`
   font-size: 24px;
   width: 100%;
   max-width: ${p => p.theme.pageMaxWidth};
-  margin: 1.62em 0 1em;
+  margin: 3.2em 0 1.6em;
 `;
 
-export default Title;
+export default H1;

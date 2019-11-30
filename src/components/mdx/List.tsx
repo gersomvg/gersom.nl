@@ -15,7 +15,7 @@ export const UL: React.FC<ULProps> = props => (
 const ULStyled = styled.ul`
   font-size: 18px;
   line-height: 1.55;
-  margin: 1em 0;
+  margin: 2em 0;
   width: 100%;
   max-width: ${p => p.theme.pageMaxWidth};
   padding-left: 2em;
@@ -44,7 +44,7 @@ export const OL: React.FC<OLProps> = props => (
 const OLStyled = styled.ol`
   font-size: 18px;
   line-height: 1.55;
-  margin: 1em 0;
+  margin: 2em 0;
   width: 100%;
   max-width: ${p => p.theme.pageMaxWidth};
 `;

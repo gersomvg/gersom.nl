@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import Layout from '../components/Layout';
 import MDXWrapper from '../components/mdx/MDXWrapper';
@@ -9,14 +8,10 @@ import Content from '../content/contact.mdx';
 const IndexPage: React.FC = () => (
   <Layout>
     <SEO title="Get in Contact" />
-    <MDXWrapperStyled>
+    <MDXWrapper>
       <Content />
-    </MDXWrapperStyled>
+    </MDXWrapper>
   </Layout>
 );
-
-const MDXWrapperStyled = styled(MDXWrapper)`
-  padding: 50px 30px;
-`;
 
 export default IndexPage;

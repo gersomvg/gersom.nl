@@ -255,7 +255,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    font-size: 16;
+    font-size: 16px;
     line-height: 1.4;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
       Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
