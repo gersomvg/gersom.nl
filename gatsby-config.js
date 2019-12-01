@@ -11,7 +11,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: `${__dirname}/src/images`,
+        path: [`${__dirname}/src/images`, `${__dirname}/src/content`],
       },
     },
     'gatsby-transformer-sharp',
@@ -32,5 +32,6 @@ module.exports = {
     'gatsby-plugin-typescript-checker',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-mdx',
+    'gatsby-plugin-catch-links',
   ],
 };
