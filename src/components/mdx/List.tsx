@@ -16,8 +16,6 @@ const ULStyled = styled.ul`
   font-size: 18px;
   line-height: 1.55;
   margin: 2em 0;
-  width: 100%;
-  max-width: ${p => p.theme.pageMaxWidth};
   padding-left: 2em;
   text-indent: -2em;
   > {
@@ -45,8 +43,6 @@ const OLStyled = styled.ol`
   font-size: 18px;
   line-height: 1.55;
   margin: 2em 0;
-  width: 100%;
-  max-width: ${p => p.theme.pageMaxWidth};
 `;
 
 // LI

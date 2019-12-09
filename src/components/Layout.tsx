@@ -14,39 +14,32 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
       <ThemeProvider theme={rootTheme}>
         <GlobalStylesReset />
         <GlobalStyles />
-        <CenterPage>
-          <Header>
-            <SiteNameBigger>
-              <Link to="/">Gersom van Ginkel</Link>
-            </SiteNameBigger>
-            <SiteNameSmaller>
-              <Link to="/">Gersom</Link>
-            </SiteNameSmaller>
-            <Nav>
-              <NavItem to="/posts">Posts</NavItem>
-              <NavItem to="/work">Work</NavItem>
-              <NavItem to="/contact">Contact</NavItem>
-            </Nav>
-          </Header>
-          {children}
-        </CenterPage>
+
+        <Header>
+          <SiteNameBigger>
+            <Link to="/">Gersom van Ginkel</Link>
+          </SiteNameBigger>
+          <SiteNameSmaller>
+            <Link to="/">Gersom</Link>
+          </SiteNameSmaller>
+          <Nav>
+            <NavItem to="/posts">Posts</NavItem>
+            <NavItem to="/work">Work</NavItem>
+            <NavItem to="/contact">Contact</NavItem>
+          </Nav>
+        </Header>
+        <Content>{children}</Content>
       </ThemeProvider>
     </>
   );
 };
-
-const CenterPage = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 const Header = styled.header`
   width: ${p => p.theme.pageMaxWidth};
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 30px 0;
+  margin: 30px auto;
   max-width: calc(100% - 40px);
   ${p => p.theme.ml} {
     max-width: calc(100% - 60px);
@@ -116,6 +109,23 @@ const NavItem = styled(Link).attrs({ activeClassName: 'active' })`
     ${p => p.theme.dark} {
       color: ${p => p.theme.color.accentLight};
     }
+  }
+`;
+
+const Content = styled.section`
+  width: ${p => p.theme.pageMaxWidth};
+  padding: 30px 0;
+  margin: 0 auto;
+  max-width: calc(100% - 40px);
+  ${p => p.theme.ml} {
+    padding: 50px 0;
+    max-width: calc(100% - 60px);
+  }
+  > :first-child {
+    margin-top: 0;
+  }
+  > :last-child {
+    margin-bottom: 0;
   }
 `;
 

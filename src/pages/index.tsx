@@ -43,12 +43,8 @@ export const query = graphql`
 `;
 
 const Hero = styled.section`
-  margin-top: 60px;
-  width: ${p => p.theme.pageMaxWidth};
-  max-width: calc(100% - 40px);
   ${p => p.theme.l} {
     display: flex;
-    max-width: calc(100% - 60px);
   }
 `;
 

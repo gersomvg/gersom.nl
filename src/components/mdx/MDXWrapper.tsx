@@ -11,13 +11,10 @@ import A from './A';
 
 export type MDXWrapperProps = {
   children?: React.ReactNode;
-  className?: string;
 };
 
 const MDXWrapper: React.FC<MDXWrapperProps> = props => (
-  <Wrapper className={props.className}>
-    <MDXProvider components={components}>{props.children}</MDXProvider>
-  </Wrapper>
+  <MDXProvider components={components}>{props.children}</MDXProvider>
 );
 
 const components = {
@@ -30,15 +27,5 @@ const components = {
   strong: Strong,
   a: A,
 };
-
-const Wrapper = styled.section`
-  padding: 50px 30px;
-  ${p => p.theme.s} {
-    padding: 30px 20px;
-  }
-  > :first-child {
-    margin-top: 0;
-  }
-`;
 
 export default MDXWrapper;

@@ -13,8 +13,6 @@ const H1: React.FC<H1Props> = props => (
 const Container = styled.h1`
   font-weight: bold;
   font-size: 24px;
-  width: 100%;
-  max-width: ${p => p.theme.pageMaxWidth};
   margin: 3.2em 0 1.6em;
 `;
 

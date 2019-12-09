@@ -14,8 +14,6 @@ const Container = styled.p`
   font-size: 18px;
   line-height: 1.55;
   margin: 2em 0;
-  width: 100%;
-  max-width: ${p => p.theme.pageMaxWidth};
 `;
 
 export default Paragraph;
