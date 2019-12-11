@@ -288,6 +288,33 @@ const GlobalStyles = createGlobalStyle`
   *:after {
       box-sizing: inherit;
   }
+
+  button {
+        border: none;
+        margin: 0;
+        padding: 0;
+        width: auto;
+        overflow: visible;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        line-height: normal;
+        -webkit-font-smoothing: inherit;
+        -moz-osx-font-smoothing: inherit;
+        -webkit-appearance: none;
+        cursor: pointer;
+    }
+
+    button::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+
+    input {
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
 `;
 
 export default Layout;

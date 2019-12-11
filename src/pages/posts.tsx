@@ -4,43 +4,53 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import H1 from '../components/mdx/H1';
-import { FrontMatter } from '../types/frontmatter';
 import PostList from '../components/PostList';
+import PostCategoryFilter, {
+  PostCategoryFilterBy,
+} from '../components/PostCategoryFilter';
 
 export type PostsPageProps = {
   data: {
     allMdx: {
       edges: {
         node: {
-          frontmatter: FrontMatter;
+          id: string;
+          frontmatter: {
+            categories: string[];
+            date: string;
+            slug: string;
+            title: string;
+          };
         };
       }[];
     };
   };
 };
 
-const PostsPage: React.FC<PostsPageProps> = props => (
-  <Layout>
-    <SEO title="Posts" />
-    <H1>Posts</H1>
-    <PostList edges={props.data.allMdx.edges} />
-  </Layout>
-);
+const PostsPage: React.FC<PostsPageProps> = props => {
+  const [category, setCategory] = React.useState<PostCategoryFilterBy>(null);
+  return (
+    <Layout>
+      <SEO title="Posts" />
+      <H1>Posts</H1>
+      <PostCategoryFilter value={category} onChange={setCategory} />
+      <PostList edges={props.data.allMdx.edges} />
+    </Layout>
+  );
+};
 
 export const query = graphql`
   query {
     allMdx(
-      filter: { fileAbsolutePath: { regex: "//markdown/posts//" } }
+      filter: { fileAbsolutePath: { regex: "//posts//" } }
       sort: { order: DESC, fields: frontmatter___date }
     ) {
       edges {
         node {
+          id
           frontmatter {
-            author
-            banner
             categories
             date
-            description
             slug
             title
           }
