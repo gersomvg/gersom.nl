@@ -24,7 +24,7 @@ const IndexPage: React.FC<Props> = props => {
           </HeroSub>
         </HeroTextGroup>
         <ImgContainer>
-          <Img fluid={props.data.file.childImageSharp.fluid} />
+          <Img fluid={props.data.file.childImageSharp.fluid} alt="Me running" />
         </ImgContainer>
       </Hero>
     </Layout>

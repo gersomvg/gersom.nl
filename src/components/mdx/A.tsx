@@ -36,6 +36,16 @@ const AStyled = styled.a`
       border-color: ${p => opacity(p.theme.color.accentLight, 0.5)};
     }
   }
+  &.gatsby-resp-image-link {
+    display: block;
+    border: none;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 30px -15px;
+    ${p => p.theme.ml} {
+      margin: 60px -20px;
+    }
+  }
 `;
 
 export default A;

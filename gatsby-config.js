@@ -38,7 +38,19 @@ module.exports = {
     'gatsby-plugin-typescript',
     'gatsby-plugin-typescript-checker',
     'gatsby-plugin-styled-components',
-    'gatsby-plugin-mdx',
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 790,
+            },
+          },
+        ],
+      },
+    },
     'gatsby-plugin-catch-links',
   ],
 };
