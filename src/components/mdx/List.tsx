@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import opacity from '../../theme/opacity';
+
 // UL
 
 export type ULProps = {
@@ -43,6 +45,14 @@ const OLStyled = styled.ol`
   font-size: 18px;
   line-height: 1.55;
   margin: 2em 0;
+  padding-left: 1.4em;
+  text-indent: 0.6em;
+  list-style-type: decimal;
+  color: ${p => opacity(p.theme.color.text, 0.62)};
+  font-weight: 500;
+  ${p => p.theme.dark} {
+    color: ${p => opacity(p.theme.color.textLight, 0.62)};
+  }
 `;
 
 // LI
@@ -53,9 +63,18 @@ export type LiProps = {
 };
 
 export const Li: React.FC<LiProps> = props => (
-  <LiStyled className={props.className}>{props.children}</LiStyled>
+  <LiStyled className={props.className}>
+    <span>{props.children}</span>
+  </LiStyled>
 );
 
 const LiStyled = styled.li`
   padding: 0.2em 0;
+  > span {
+    font-weight: normal;
+    color: ${p => p.theme.color.text};
+    ${p => p.theme.dark} {
+      color: ${p => p.theme.color.textLight};
+    }
+  }
 `;
