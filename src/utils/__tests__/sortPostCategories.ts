@@ -16,4 +16,6 @@ test('it sorts correctly', () => {
     'a',
     'other',
   ]);
+
+  expect(sortPostCategories(['a', 'b', 'c'])).toEqual(['a', 'b', 'c']);
 });
