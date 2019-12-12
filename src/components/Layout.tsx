@@ -114,11 +114,16 @@ const NavItem = styled(Link).attrs({ activeClassName: 'active' })`
 
 const Content = styled.section`
   width: ${p => p.theme.pageMaxWidth};
-  padding: 30px 0;
+  padding: 20px 0 40px;
   margin: 0 auto;
   max-width: calc(100% - 40px);
-  ${p => p.theme.ml} {
+  ${p => p.theme.m} {
+    padding: 40px 0;
+  }
+  ${p => p.theme.l} {
     padding: 50px 0;
+  }
+  ${p => p.theme.ml} {
     max-width: calc(100% - 60px);
   }
   > :first-child {

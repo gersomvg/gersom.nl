@@ -13,6 +13,9 @@ import Paragraph from '../components/mdx/Paragraph';
 export type PostPageProps = {
   data: {
     mdx: {
+      fields: {
+        slug: string;
+      };
       frontmatter: {
         author: string;
         cover: {
@@ -23,7 +26,6 @@ export type PostPageProps = {
         categories: string[];
         date: string;
         description: string;
-        slug: string;
         title: string;
       };
       body: any;
@@ -49,8 +51,11 @@ const PostTemplate: React.FC<PostPageProps> = props => {
 };
 
 export const query = graphql`
-  query($slug: String!) {
-    mdx(frontmatter: { slug: { eq: $slug } }) {
+  query($id: String!) {
+    mdx(id: { eq: $id }) {
+      fields {
+        slug
+      }
       frontmatter {
         author
         cover {
@@ -63,7 +68,6 @@ export const query = graphql`
         categories
         date
         description
-        slug
         title
         published
         listed

@@ -5,9 +5,7 @@ import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import H1 from '../components/mdx/H1';
 import PostList from '../components/PostList';
-import PostCategoryFilter, {
-  PostCategoryFilterBy,
-} from '../components/PostCategoryFilter';
+import PostCategoryFilter from '../components/PostCategoryFilter';
 
 export type PostsPageProps = {
   data: {
@@ -15,43 +13,57 @@ export type PostsPageProps = {
       edges: {
         node: {
           id: string;
+          fields: {
+            slug: string;
+          };
           frontmatter: {
             categories: string[];
             date: string;
-            slug: string;
             title: string;
           };
         };
       }[];
     };
   };
+  pageContext: {
+    activeCategory?: string;
+    categories: string[];
+  };
 };
 
 const PostsPage: React.FC<PostsPageProps> = props => {
-  const [category, setCategory] = React.useState<PostCategoryFilterBy>(null);
   return (
     <Layout>
       <SEO title="Posts" />
       <H1>Posts</H1>
-      <PostCategoryFilter value={category} onChange={setCategory} />
+      <PostCategoryFilter categories={props.pageContext.categories} />
       <PostList edges={props.data.allMdx.edges} />
     </Layout>
   );
 };
 
 export const query = graphql`
-  query {
+  query($activeCategory: [String]) {
     allMdx(
-      filter: { fileAbsolutePath: { regex: "//posts//" } }
+      filter: {
+        fileAbsolutePath: { regex: "//posts//" }
+        frontmatter: {
+          published: { eq: true }
+          listed: { eq: true }
+          categories: { in: $activeCategory }
+        }
+      }
       sort: { order: DESC, fields: frontmatter___date }
     ) {
       edges {
         node {
           id
+          fields {
+            slug
+          }
           frontmatter {
             categories
             date
-            slug
             title
           }
         }

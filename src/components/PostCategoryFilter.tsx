@@ -1,39 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import upperFirst from 'lodash/upperFirst';
+import { Link } from 'gatsby';
 
 import opacity from '../theme/opacity';
 import getPostEmoji from '../utils/getPostEmoji';
-
-export const postCategories = [
-  'code',
-  'running',
-  'veganism',
-  'lifehacks',
-  'other',
-] as const;
-
-export type PostCategoryFilterBy = typeof postCategories[number] | null;
+import sortPostCategories from '../utils/sortPostCategories';
 
 export type PostCategoryFilterProps = {
-  value: PostCategoryFilterBy;
-  onChange: (value: PostCategoryFilterBy) => void;
+  categories: string[];
 };
 
 const PostCategoryFilter: React.FC<PostCategoryFilterProps> = props => {
+  const categories = React.useMemo(() => sortPostCategories(props.categories), [
+    props.categories,
+  ]);
   return (
     <Container>
       <ContainerInner>
-        {postCategories.map(category => (
-          <Button
-            active={props.value === category}
-            onClick={() =>
-              props.onChange(props.value === category ? null : category)
-            }
-            key={category}
-            emoji={getPostEmoji(category)}
-            title={upperFirst(category)}
-          />
+        {categories.map(category => (
+          <Button key={category} category={category} />
         ))}
       </ContainerInner>{' '}
     </Container>
@@ -41,25 +27,19 @@ const PostCategoryFilter: React.FC<PostCategoryFilterProps> = props => {
 };
 
 const Button: React.FC<{
-  title: string;
-  active?: boolean;
-  onClick: () => void;
-  emoji: string;
+  category: string;
 }> = props => {
+  const emoji = getPostEmoji(props.category);
+  const title = upperFirst(props.category);
   return (
-    <StyledButton
-      type="button"
-      active={props.active}
-      onClick={props.onClick}
-      title={props.title}
-    >
-      <span>{props.emoji}</span>
-      <span>{props.title}</span>
+    <StyledButton title={title} to={`/posts/${props.category}`}>
+      <span>{emoji}</span>
+      <span>{title}</span>
     </StyledButton>
   );
 };
 
-const Container = styled.section`
+const Container = styled.nav`
   margin: 30px auto 40px;
 `;
 
@@ -69,28 +49,23 @@ const ContainerInner = styled.div`
   flex-wrap: wrap;
 `;
 
-const StyledButton = styled.button<{ active?: boolean }>`
+const StyledButton = styled(Link).attrs({ activeClassName: 'active' })`
   flex: none;
   font-family: inherit;
-  font-weight: ${p => (p.active ? 'bold' : '500')};
+  font-weight: 500;
   font-size: 15px;
+  text-decoration: none;
+  color: inherit;
   height: 38px;
   line-height: 38px;
   padding: 0 15px;
   margin: 0.3em;
   border-radius: 5px;
   display: flex;
-  background-color: ${p =>
-    p.active ? opacity(p.theme.color.accent, 0.05) : 'rgba(0,0,0,0.05)'};
+  background-color: rgba(0,0,0,0.05);
   ${p => p.theme.dark} {
-    background-color: ${p =>
-      p.active
-        ? opacity(p.theme.color.accentLight, 0.1)
-        : 'rgba(255,255,255,0.05)'};
+    background-color: rgba(255,255,255,0.05);
   }
-  transition-duration: 0.2s;
-  transition-timing-function: ease-out;
-  transition-property: background;
   &:hover,
   &:focus {
     background-color: ${p => opacity(p.theme.color.accent, 0.1)};
@@ -99,13 +74,12 @@ const StyledButton = styled.button<{ active?: boolean }>`
     }
   }
   > span:first-child {
-    filter: ${p => !p.active && 'grayscale(100%)'};
+    filter: grayscale(100%);
     margin-left: -0.1em;
     margin-right: 0.38em;
   }
   > span:last-child {
-    opacity: ${p => (p.active ? 1 : 0.7)};
-    color: ${p => (p.active ? p.theme.color.accent : 'inherit')};
+    opacity: 0.7;
     &:after {
       display: block;
       content: '${p => p.title}';
@@ -113,6 +87,20 @@ const StyledButton = styled.button<{ active?: boolean }>`
       height: 0;
       overflow: hidden;
       visibility: hidden;
+    }
+  }
+  &.active {
+    font-weight: bold;
+    background-color: ${p => opacity(p.theme.color.accent, 0.05)};
+    ${p => p.theme.dark} {
+      background-color: ${p => opacity(p.theme.color.accentLight, 0.1)};
+    }
+    > span:first-child {
+      filter: none;
+    }
+    > span:last-child {
+      opacity: 1;
+      color: ${p => p.theme.color.accent};
     }
   }
 `;
