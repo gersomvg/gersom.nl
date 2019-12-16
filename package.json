@@ -20,7 +20,7 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.5.1",
     "@mdx-js/react": "^1.5.1",
-    "gatsby": "^2.18.8",
+    "gatsby": "^2.18.12",
     "gatsby-image": "^2.2.34",
     "gatsby-plugin-catch-links": "^2.1.19",
     "gatsby-plugin-manifest": "^2.2.31",
@@ -59,11 +59,7 @@
     "typescript": "^3.7.3"
   },
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  "engines": {
+    "node": "12.13.0"
   }
 }
