@@ -8,7 +8,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       node,
       getNode,
       basePath: 'posts',
-      trailingSlash: false,
+      trailingSlash: true,
     });
     createNodeField({
       node,

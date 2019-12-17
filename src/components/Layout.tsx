@@ -23,9 +23,9 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
             <Link to="/">Gersom</Link>
           </SiteNameSmaller>
           <Nav>
-            <NavItem to="/posts">Posts</NavItem>
-            <NavItem to="/work">Work</NavItem>
-            <NavItem to="/contact">Contact</NavItem>
+            <NavItem to="/posts/">Posts</NavItem>
+            <NavItem to="/work/">Work</NavItem>
+            <NavItem to="/contact/">Contact</NavItem>
           </Nav>
         </Header>
         <Content>{children}</Content>
