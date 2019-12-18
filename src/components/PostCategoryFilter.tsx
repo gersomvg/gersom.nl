@@ -32,7 +32,7 @@ const Button: React.FC<{
   const emoji = getPostEmoji(props.category);
   const title = upperFirst(props.category);
   return (
-    <StyledButton title={title} to={`/posts/${props.category}`}>
+    <StyledButton title={title} to={`/posts/${props.category}/`}>
       <span>{emoji}</span>
       <span>{title}</span>
     </StyledButton>

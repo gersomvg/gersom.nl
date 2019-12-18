@@ -62,7 +62,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const categoryArray = Array.from(categorySet);
 
   createPage({
-    path: `posts`,
+    path: `posts/`,
     component: path.resolve(`./src/templates/posts.tsx`),
     context: {
       categories: categoryArray,
@@ -70,7 +70,7 @@ exports.createPages = async ({ graphql, actions }) => {
   });
   categoryArray.forEach(category => {
     createPage({
-      path: `posts/${category}`,
+      path: `posts/${category}/`,
       component: path.resolve(`./src/templates/posts.tsx`),
       context: {
         activeCategory: category,
