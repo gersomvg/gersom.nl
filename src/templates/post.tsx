@@ -37,7 +37,11 @@ const PostTemplate: React.FC<PostPageProps> = props => {
   const mdx = props.data.mdx;
   return (
     <Layout>
-      <SEO title={mdx.frontmatter.title} />
+      <SEO
+        title={mdx.frontmatter.title}
+        description={mdx.frontmatter.description}
+        author={mdx.frontmatter.author}
+      />
       <H1>{mdx.frontmatter.title}</H1>
       <Paragraph>
         <span>{mdx.frontmatter.description}</span>
