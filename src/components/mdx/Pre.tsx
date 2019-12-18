@@ -24,7 +24,6 @@ const Wrapper = styled.pre`
   line-height: 1.5;
   tab-size: 4;
   hyphens: none;
-  border-radius: 0.5em;
   padding: 1em 1em 1em 3.8em;
   overflow: auto;
   height: auto;
@@ -33,10 +32,13 @@ const Wrapper = styled.pre`
   counter-reset: linenumber;
   margin: 25px -20px;
   ${p => p.theme.m} {
-    margin: 40px -30px;
+    margin: 40px -20px;
   }
   ${p => p.theme.l} {
     margin: 50px -20px;
+  }
+  ${p => p.theme.ml} {
+    border-radius: 6px;
   }
 
   code {
