@@ -18,7 +18,6 @@ export type PostsPageProps = {
           };
           frontmatter: {
             categories: string[];
-            date: string;
             title: string;
           };
         };
@@ -63,7 +62,6 @@ export const query = graphql`
           }
           frontmatter {
             categories
-            date
             title
           }
         }

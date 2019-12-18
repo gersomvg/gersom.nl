@@ -14,7 +14,6 @@ export type PostListProps = {
       };
       frontmatter: {
         categories: string[];
-        date: string;
         title: string;
       };
     };

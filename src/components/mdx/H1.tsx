@@ -6,14 +6,15 @@ export type H1Props = {
   className?: string;
 };
 
-const H1: React.FC<H1Props> = props => (
-  <Container className={props.className}>{props.children}</Container>
-);
+const H1: React.FC<H1Props> = props => {
+  console.log(props);
+  return <Container className={props.className}>{props.children}</Container>;
+};
 
 const Container = styled.h1`
   font-weight: bold;
   font-size: 24px;
-  margin: 3.2em 0 1.6em;
+  margin: 80px 0 40px;
 `;
 
 export default H1;
