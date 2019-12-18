@@ -10,6 +10,7 @@ import Emphasis from './Emphasis';
 import InlineCode from './InlineCode';
 import A from './A';
 import Blockquote from './Blockquote';
+import Pre from './Pre';
 
 export type MDXWrapperProps = {
   children?: React.ReactNode;
@@ -30,6 +31,7 @@ const components = {
   em: Emphasis,
   a: A,
   blockquote: Blockquote,
+  pre: Pre,
 };
 
 export default MDXWrapper;
