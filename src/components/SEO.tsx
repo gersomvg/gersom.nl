@@ -2,19 +2,63 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-type Props = {
+export type SEOProps = {
+  title: string;
   description?: string;
   lang?: string;
   meta?: { name: string; content: string }[];
-  title: string;
+  author?: string;
 };
 
-const SEO: React.FunctionComponent<Props> = ({
-  description,
-  lang = 'en',
-  meta = [],
-  title,
-}) => {
+export type PureSEOProps = SEOProps & { titleTemplate: string };
+
+export const PureSEO: React.FunctionComponent<PureSEOProps> = props => {
+  return (
+    <Helmet
+      htmlAttributes={{
+        lang: props.lang ?? 'en',
+      }}
+      title={props.title}
+      titleTemplate={props.titleTemplate}
+      meta={[
+        {
+          name: `description`,
+          content: props.description,
+        },
+        {
+          property: `og:title`,
+          content: props.title,
+        },
+        {
+          property: `og:description`,
+          content: props.description,
+        },
+        {
+          property: `og:type`,
+          content: `website`,
+        },
+        {
+          name: `twitter:card`,
+          content: `summary`,
+        },
+        {
+          name: `twitter:creator`,
+          content: props.author,
+        },
+        {
+          name: `twitter:title`,
+          content: props.title,
+        },
+        {
+          name: `twitter:description`,
+          content: props.description,
+        },
+      ].concat(props.meta ?? [])}
+    />
+  );
+};
+
+const SEO: React.FC<SEOProps> = props => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -29,49 +73,13 @@ const SEO: React.FunctionComponent<Props> = ({
     `
   );
 
-  const metaDescription = description || site.siteMetadata.description;
-
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
+    <PureSEO
+      {...props}
+      title={props.title}
       titleTemplate={`%s » ${site.siteMetadata.title} 👨‍💻`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta)}
+      description={props.description ?? site.siteMetadata.description}
+      author={props.author ?? site.siteMetadata.author}
     />
   );
 };
