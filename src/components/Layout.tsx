@@ -90,7 +90,7 @@ const NavItem = styled(Link).attrs({ activeClassName: 'active' })`
   position: relative;
   color: inherit;
   opacity: 0.7;
-  ${p => p.theme.l} {
+  ${p => p.theme.ml} {
     font-size: 18px;
   }
   + * {

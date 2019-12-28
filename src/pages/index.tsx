@@ -162,18 +162,15 @@ const HeroTextGroup = styled.div`
   }
 `;
 
-const HeroTitle = styled.h1`
-  font-size: 24px;
-  margin-bottom: 1em;
-  font-weight: bold;
+const HeroTitle = styled(H1)`
+  margin: 0 0 1em;
   ${p => p.theme.l} {
     margin-top: 0.5em;
   }
 `;
 
-const HeroSub = styled.p`
-  font-size: 20px;
-  line-height: 1.66;
+const HeroSub = styled(Paragraph)`
+  margin: 0;
 `;
 
 const ImgContainer = styled.div`

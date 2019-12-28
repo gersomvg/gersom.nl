@@ -13,8 +13,16 @@ const H1: React.FC<H1Props> = props => {
 
 const Container = styled.h1`
   font-weight: bold;
-  font-size: 24px;
-  margin: 80px 0 40px;
+  font-size: 20px;
+  margin: 60px 0 30px;
+  ${p => p.theme.m} {
+    font-size: 22px;
+    margin: 70px 0 35px;
+  }
+  ${p => p.theme.l} {
+    font-size: 24px;
+    margin: 80px 0 40px;
+  }
 `;
 
 export default H1;

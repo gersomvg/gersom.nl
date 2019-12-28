@@ -42,17 +42,18 @@ const Wrapper = styled.nav`
 const LinkStyled = styled(Link)`
   font-weight: 500;
   font-size: 17px;
-  line-height: 1.55;
+  line-height: 1.66;
   color: inherit;
   display: flex;
   text-decoration: none;
   border-radius: 5px;
-  padding: calc(22px - 0.775em) 10px;
+  padding: calc(22px - 0.83em) 10px;
   margin: 0 -10px;
   ${p => p.theme.ml} {
     padding-left: 15px;
     padding-right: 15px;
     margin: 0 -15px;
+    font-size: 19px;
   }
   :hover,
   :focus {

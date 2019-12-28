@@ -15,7 +15,7 @@ export const UL: React.FC<ULProps> = props => (
 );
 
 const ULStyled = styled.ul`
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.66;
   margin: 2em 0;
   padding-left: 2em;
@@ -28,7 +28,10 @@ const ULStyled = styled.ul`
       text-indent: 0;
     }
   }
-  ${p => p.theme.ml} {
+  ${p => p.theme.m} {
+    font-size: 19px;
+  }
+  ${p => p.theme.l} {
     font-size: 20px;
   }
 `;
@@ -45,7 +48,7 @@ export const OL: React.FC<OLProps> = props => (
 );
 
 const OLStyled = styled.ol`
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.55;
   margin: 2em 0;
   padding-left: 1.4em;
@@ -56,7 +59,10 @@ const OLStyled = styled.ol`
   ${p => p.theme.dark} {
     color: ${p => opacity(p.theme.color.textLight, 0.62)};
   }
-  ${p => p.theme.ml} {
+  ${p => p.theme.m} {
+    font-size: 19px;
+  }
+  ${p => p.theme.l} {
     font-size: 20px;
   }
 `;

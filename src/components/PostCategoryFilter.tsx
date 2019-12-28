@@ -66,6 +66,9 @@ const StyledButton = styled(Link).attrs({ activeClassName: 'active' })`
   ${p => p.theme.dark} {
     background-color: rgba(255,255,255,0.05);
   }
+  ${p => p.theme.ml} {
+    font-size: 16px;
+  }
   &:hover,
   &:focus {
     background-color: ${p => opacity(p.theme.color.accent, 0.1)};

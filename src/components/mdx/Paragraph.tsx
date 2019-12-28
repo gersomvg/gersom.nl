@@ -11,11 +11,13 @@ const Paragraph: React.FC<ParagraphProps> = props => (
 );
 
 const Container = styled.p`
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.66;
   margin: 2em 0;
-
-  ${p => p.theme.ml} {
+  ${p => p.theme.m} {
+    font-size: 19px;
+  }
+  ${p => p.theme.l} {
     font-size: 20px;
   }
 `;
