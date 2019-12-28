@@ -23,6 +23,7 @@ export type PostPageProps = {
             fluid: FluidObject;
           };
         };
+        coverAlt: string;
         categories: string[];
         date: string;
         description: string;
@@ -46,7 +47,10 @@ const PostTemplate: React.FC<PostPageProps> = props => {
       <Paragraph>
         <span>{mdx.frontmatter.description}</span>
       </Paragraph>
-      <Cover fluid={mdx.frontmatter.cover.childImageSharp.fluid} />
+      <Cover
+        fluid={mdx.frontmatter.cover.childImageSharp.fluid}
+        alt={mdx.frontmatter.coverAlt}
+      />
       <MDXWrapper>
         <MDXRenderer>{mdx.body}</MDXRenderer>
       </MDXWrapper>
@@ -69,6 +73,7 @@ export const query = graphql`
             }
           }
         }
+        coverAlt
         categories
         date
         description

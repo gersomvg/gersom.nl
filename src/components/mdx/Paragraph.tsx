@@ -12,8 +12,12 @@ const Paragraph: React.FC<ParagraphProps> = props => (
 
 const Container = styled.p`
   font-size: 18px;
-  line-height: 1.55;
+  line-height: 1.66;
   margin: 2em 0;
+
+  ${p => p.theme.ml} {
+    font-size: 20px;
+  }
 `;
 
 export default Paragraph;

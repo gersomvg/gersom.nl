@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { MDXProvider } from '@mdx-js/react';
 
 import H1 from './H1';
@@ -11,6 +10,7 @@ import InlineCode from './InlineCode';
 import A from './A';
 import Blockquote from './Blockquote';
 import Pre from './Pre';
+import HR from './HR';
 
 export type MDXWrapperProps = {
   children?: React.ReactNode;
@@ -32,6 +32,7 @@ const components = {
   a: A,
   blockquote: Blockquote,
   pre: Pre,
+  hr: HR,
 };
 
 export default MDXWrapper;

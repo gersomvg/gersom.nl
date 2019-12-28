@@ -16,7 +16,7 @@ export const UL: React.FC<ULProps> = props => (
 
 const ULStyled = styled.ul`
   font-size: 18px;
-  line-height: 1.55;
+  line-height: 1.66;
   margin: 2em 0;
   padding-left: 2em;
   text-indent: -2em;
@@ -27,6 +27,9 @@ const ULStyled = styled.ul`
       width: 2em;
       text-indent: 0;
     }
+  }
+  ${p => p.theme.ml} {
+    font-size: 20px;
   }
 `;
 
@@ -52,6 +55,9 @@ const OLStyled = styled.ol`
   font-weight: 500;
   ${p => p.theme.dark} {
     color: ${p => opacity(p.theme.color.textLight, 0.62)};
+  }
+  ${p => p.theme.ml} {
+    font-size: 20px;
   }
 `;
 

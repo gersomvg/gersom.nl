@@ -61,11 +61,11 @@ const IndexPage: React.FC<IndexPageProps> = props => {
         ctaHref="https://www.strava.com/athletes/gersom"
       />
       <Paragraph>
-        One of the activities that really defines me is running. I share this
-        passion with my crew, the Amsterdam Running Junkies. I mostly run on the
-        road but I’m in my happiest state when I’m on a mountain trail. I’m a
-        firm believer in the benefits of barefoot running, so I run all my runs
-        in minimal shoes.
+        One of the activities that define me is running. I share this passion
+        with my crew, the Amsterdam Running Junkies. I mostly run on the road
+        but I’m in my happiest state when I’m on a mountain trail. I’m a firm
+        believer in the benefits of barefoot running, so I run all my runs in
+        minimal shoes.
       </Paragraph>
       <TitleWithCTA
         title="Veganism"
@@ -73,10 +73,10 @@ const IndexPage: React.FC<IndexPageProps> = props => {
         ctaHref="http://onelink.to/qy8s2q"
       />
       <Paragraph>
-        I have a huge interest in sustainability and I firmly believe that
-        veganism is the way forward. It’s the ultimate win-win-win, cutting back
-        on emissions and land use, improving people’s health, and helping us to
-        learn to respect all kinds of animal. To help people in the Netherlands
+        I have a huge interest in sustainability and I believe that veganism is
+        the way forward. It’s the ultimate win-win-win, cutting back on
+        emissions and land use, improving people’s health, and helping us to
+        learn to respect all kinds of animals. To help people in the Netherlands
         with the initial threshold of becoming vegan, I built an app called
         Plenty. This app helps them to find (accidentally) vegan products in the
         supermarket.
@@ -167,12 +167,13 @@ const HeroTitle = styled.h1`
   margin-bottom: 1em;
   font-weight: bold;
   ${p => p.theme.l} {
-    margin-top: 1em;
+    margin-top: 0.5em;
   }
 `;
 
 const HeroSub = styled.p`
   font-size: 20px;
+  line-height: 1.66;
 `;
 
 const ImgContainer = styled.div`

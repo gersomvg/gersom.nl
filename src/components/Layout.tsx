@@ -118,10 +118,10 @@ const Content = styled.section`
   margin: 0 auto;
   max-width: calc(100% - 40px);
   ${p => p.theme.m} {
-    padding: 40px 0;
+    padding: 40px 0 80px;
   }
   ${p => p.theme.l} {
-    padding: 50px 0;
+    padding: 50px 0 100px;
   }
   ${p => p.theme.ml} {
     max-width: calc(100% - 60px);
