@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { Link } from 'gatsby';
+import Helmet from 'react-helmet';
 
 import rootTheme from '../theme';
 
@@ -14,6 +15,14 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
       <ThemeProvider theme={rootTheme}>
         <GlobalStylesReset />
         <GlobalStyles />
+        <Helmet
+          meta={[
+            {
+              name: 'viewport',
+              content: 'width=device-width, initial-scale=1',
+            },
+          ]}
+        />
 
         <Header>
           <SiteNameBigger>
