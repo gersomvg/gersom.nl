@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { graphql, Link } from 'gatsby';
-import Img, { FluidObject } from 'gatsby-image';
+import Img, { FixedObject } from 'gatsby-image';
 
 import opacity from '../theme/opacity';
 import Layout from '../components/Layout';
@@ -12,7 +12,7 @@ import PostList from '../components/PostList';
 
 export type IndexPageProps = {
   data: {
-    file: { childImageSharp: { fluid: FluidObject } };
+    file: { childImageSharp: { fixed: FixedObject } };
     allMdx: {
       edges: {
         node: {
@@ -44,7 +44,7 @@ const IndexPage: React.FC<IndexPageProps> = props => {
           </HeroSub>
         </HeroTextGroup>
         <ImgContainer>
-          <Img fluid={props.data.file.childImageSharp.fluid} alt="Me running" />
+          <Img fixed={props.data.file.childImageSharp.fixed} alt="Me running" />
         </ImgContainer>
       </Hero>
       <TitleWithCTA title="Posts" ctaText="See all" ctaTo="/posts/" />
@@ -89,8 +89,8 @@ export const query = graphql`
   query {
     file(relativePath: { eq: "me-running.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 200, quality: 100) {
-          ...GatsbyImageSharpFluid
+        fixed(width: 200, quality: 90) {
+          ...GatsbyImageSharpFixed
         }
       }
     }
