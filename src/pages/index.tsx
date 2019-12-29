@@ -47,9 +47,9 @@ const IndexPage: React.FC<IndexPageProps> = props => {
           <Img fluid={props.data.file.childImageSharp.fluid} alt="Me running" />
         </ImgContainer>
       </Hero>
-      <TitleWithCTA title="Posts" ctaText="See all" ctaTo="posts/" />
+      <TitleWithCTA title="Posts" ctaText="See all" ctaTo="/posts/" />
       <PostList edges={props.data.allMdx.edges} />
-      <TitleWithCTA title="Work" ctaText="See portfolio" ctaTo="work/" />
+      <TitleWithCTA title="Work" ctaText="See portfolio" ctaTo="/work/" />
       <Paragraph>
         I’m a full-stack JS developer. I work for Polder, but I’m also open for
         new freelance opportunities. Most of my current time is spent coding in
