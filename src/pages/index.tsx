@@ -178,10 +178,6 @@ const ImgContainer = styled.div`
   overflow: hidden;
   width: 200px;
   height: 200px;
-  ${p => p.theme.s} {
-    width: 150px;
-    height: 150px;
-  }
   ${p => p.theme.sm} {
     margin: auto;
   }
