@@ -2,7 +2,7 @@
   "name": "gersom.nl",
   "private": true,
   "description": "Personal Website of Gersom van Ginkel",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Gersom van Ginkel <inbox@gersom.nl>",
   "scripts": {
     "build": "gatsby build",
