@@ -15,7 +15,7 @@ const HR: React.FC<HRProps> = props => (
 const Container = styled.hr`
   margin: 60px -10px;
   border: none;
-  height: 3px;
+  height: 2px;
   opacity: 0.62;
   border-radius: 50%;
   background: currentColor;

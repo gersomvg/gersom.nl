@@ -1,14 +1,13 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import styled from 'styled-components';
-import Img, { FluidObject } from 'gatsby-image';
 
 import Layout from '../components/Layout';
 import H1 from '../components/mdx/H1';
 import MDXWrapper from '../components/mdx/MDXWrapper';
 import SEO from '../components/SEO';
 import Paragraph from '../components/mdx/Paragraph';
+import Emphasis from '../components/mdx/Emphasis';
 
 export type PostPageProps = {
   data: {
@@ -18,12 +17,6 @@ export type PostPageProps = {
       };
       frontmatter: {
         author: string;
-        cover: {
-          childImageSharp: {
-            fluid: FluidObject;
-          };
-        };
-        coverAlt: string;
         categories: string[];
         date: string;
         description: string;
@@ -45,12 +38,8 @@ const PostTemplate: React.FC<PostPageProps> = props => {
       />
       <H1>{mdx.frontmatter.title}</H1>
       <Paragraph>
-        <span>{mdx.frontmatter.description}</span>
+        <Emphasis>{mdx.frontmatter.description}</Emphasis>
       </Paragraph>
-      <Cover
-        fluid={mdx.frontmatter.cover.childImageSharp.fluid}
-        alt={mdx.frontmatter.coverAlt}
-      />
       <MDXWrapper>
         <MDXRenderer>{mdx.body}</MDXRenderer>
       </MDXWrapper>
@@ -66,14 +55,6 @@ export const query = graphql`
       }
       frontmatter {
         author
-        cover {
-          childImageSharp {
-            fluid(maxWidth: 790, maxHeight: 300, cropFocus: CENTER) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        coverAlt
         categories
         date
         description
@@ -83,14 +64,6 @@ export const query = graphql`
       }
       body
     }
-  }
-`;
-
-const Cover = styled(Img)`
-  border-radius: 6px;
-  margin: 30px -15px;
-  ${p => p.theme.ml} {
-    margin: 60px -20px;
   }
 `;
 

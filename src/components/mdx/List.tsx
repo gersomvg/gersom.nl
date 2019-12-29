@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import opacity from '../../theme/opacity';
+import Paragraph from './Paragraph';
 
 // UL
 
@@ -10,29 +11,38 @@ export type ULProps = {
   className?: string;
 };
 
-export const UL: React.FC<ULProps> = props => (
-  <ULStyled className={props.className}>{props.children}</ULStyled>
-);
+export const UL: React.FC<ULProps> = props => {
+  return <ULStyled className={props.className}>{props.children}</ULStyled>;
+};
 
 const ULStyled = styled.ul`
-  font-size: 16px;
-  line-height: 1.66;
   margin: 2em 0;
-  padding-left: 2em;
-  text-indent: -2em;
-  > {
-    :before {
-      content: '▪︎';
-      display: inline-block;
-      width: 2em;
-      text-indent: 0;
+  > li {
+    position: relative;
+    padding-left: 1.6em;
+    ${p => p.theme.ml} {
+      padding-left: 2em;
     }
-  }
-  ${p => p.theme.m} {
-    font-size: 19px;
-  }
-  ${p => p.theme.l} {
-    font-size: 20px;
+    :before {
+      position: absolute;
+      right: 100%;
+      margin-right: -0.55em;
+      content: '▪︎';
+      text-align: right;
+      line-height: 1.66;
+      font-weight: 500;
+      font-size: 16px;
+      color: ${p => opacity(p.theme.color.text, 0.62)};
+      ${p => p.theme.dark} {
+        color: ${p => opacity(p.theme.color.textLight, 0.62)};
+      }
+      ${p => p.theme.m} {
+        font-size: 19px;
+      }
+      ${p => p.theme.l} {
+        font-size: 20px;
+      }
+    }
   }
 `;
 
@@ -43,27 +53,19 @@ export type OLProps = {
   className?: string;
 };
 
-export const OL: React.FC<OLProps> = props => (
-  <OLStyled className={props.className}>{props.children}</OLStyled>
-);
+export const OL: React.FC<OLProps> = props => {
+  return <OLStyled className={props.className}>{props.children}</OLStyled>;
+};
 
-const OLStyled = styled.ol`
-  font-size: 16px;
-  line-height: 1.55;
-  margin: 2em 0;
-  padding-left: 1.4em;
-  text-indent: 0.6em;
-  list-style-type: decimal;
-  color: ${p => opacity(p.theme.color.text, 0.62)};
-  font-weight: 500;
-  ${p => p.theme.dark} {
-    color: ${p => opacity(p.theme.color.textLight, 0.62)};
-  }
-  ${p => p.theme.m} {
-    font-size: 19px;
-  }
-  ${p => p.theme.l} {
-    font-size: 20px;
+const ULAsOL = ULStyled.withComponent('ol');
+const OLStyled = styled(ULAsOL)`
+  counter-reset: list;
+  > li {
+    :before {
+      margin-right: -0.9em;
+      counter-increment: list;
+      content: counter(list) '.';
+    }
   }
 `;
 
@@ -75,18 +77,16 @@ export type LiProps = {
 };
 
 export const Li: React.FC<LiProps> = props => (
-  <LiStyled className={props.className}>
-    <span>{props.children}</span>
-  </LiStyled>
+  <LiStyled className={props.className}>{props.children}</LiStyled>
 );
 
-const LiStyled = styled.li`
-  padding: 0.2em 0;
-  > span {
-    font-weight: normal;
-    color: ${p => p.theme.color.text};
-    ${p => p.theme.dark} {
-      color: ${p => p.theme.color.textLight};
-    }
+const ParagraphAsLi = Paragraph.withComponent('li');
+const LiStyled = styled(ParagraphAsLi)`
+  margin: 0.4em 0;
+  > :first-child {
+    margin-top: 0;
+  }
+  > :last-child {
+    margin-bottom: 0;
   }
 `;

@@ -4,6 +4,8 @@ module.exports = {
     description:
       'From Amsterdam with love, this is the space where I write about code, running, and veganism.',
     author: '@Gersom_NL',
+    gitRepo: 'https://github.com/gersomvg/gersom.nl/',
+    gitRepoFilePath: 'https://github.com/gersomvg/gersom.nl/blob/master/',
   },
   plugins: [
     'gatsby-plugin-react-helmet',

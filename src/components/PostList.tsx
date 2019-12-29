@@ -41,14 +41,20 @@ const Wrapper = styled.nav`
 
 const LinkStyled = styled(Link)`
   font-weight: 500;
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.66;
   color: inherit;
   display: flex;
   text-decoration: none;
   border-radius: 5px;
-  padding: calc(22px - 0.83em) 10px;
+  padding: calc(24px - 0.83em) 10px;
   margin: 0 -10px;
+  ${p => p.theme.m} {
+    font-size: 18px;
+  }
+  ${p => p.theme.l} {
+    font-size: 19px;
+  }
   ${p => p.theme.ml} {
     padding-left: 15px;
     padding-right: 15px;

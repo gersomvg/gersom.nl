@@ -7,7 +7,6 @@ export type H1Props = {
 };
 
 const H1: React.FC<H1Props> = props => {
-  console.log(props);
   return <Container className={props.className}>{props.children}</Container>;
 };
 
