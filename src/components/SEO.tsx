@@ -8,6 +8,7 @@ export type SEOProps = {
   lang?: string;
   meta?: { name: string; content: string }[];
   author?: string;
+  twitterAuthor?: string;
 };
 
 export type PureSEOProps = SEOProps & { titleTemplate: string };
@@ -24,6 +25,10 @@ export const PureSEO: React.FunctionComponent<PureSEOProps> = props => {
         {
           name: `description`,
           content: props.description,
+        },
+        {
+          name: 'author',
+          content: props.author,
         },
         {
           property: `og:title`,
@@ -43,7 +48,7 @@ export const PureSEO: React.FunctionComponent<PureSEOProps> = props => {
         },
         {
           name: `twitter:creator`,
-          content: props.author,
+          content: props.twitterAuthor,
         },
         {
           name: `twitter:title`,
@@ -67,6 +72,7 @@ const SEO: React.FC<SEOProps> = props => {
             title
             description
             author
+            twitterAuthor
           }
         }
       }
@@ -80,6 +86,7 @@ const SEO: React.FC<SEOProps> = props => {
       titleTemplate={`%s » ${site.siteMetadata.title} 👨‍💻`}
       description={props.description ?? site.siteMetadata.description}
       author={props.author ?? site.siteMetadata.author}
+      twitterAuthor={props.twitterAuthor ?? site.siteMetadata.twitterAuthor}
     />
   );
 };
