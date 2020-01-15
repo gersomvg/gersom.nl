@@ -1,12 +1,13 @@
 const chromium = require('chrome-aws-lambda');
+const puppeteer = require('puppeteer');
+const puppeteerCore = require('puppeteer-core');
 const fs = require('fs');
 const path = require('path');
 
 module.exports = async () => {
-  let title = null;
-  let browser = null;
+  const useCore = process.env.NETLIFY === 'true';
 
-  browser = await chromium.puppeteer.launch({
+  const browser = await (useCore ? puppeteerCore : puppeteer).launch({
     args: chromium.args,
     executablePath: await chromium.executablePath,
     headless: chromium.headless,
