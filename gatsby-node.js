@@ -1,4 +1,4 @@
-const path = require(`path`);
+const path = require('path');
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
@@ -18,8 +18,9 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 };
 
-exports.createPages = async ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions, ...other }) => {
   const { createPage } = actions;
+
   const result = await graphql(`
     query {
       allMdx(
@@ -78,4 +79,8 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
+};
+
+exports.onPostBuild = () => {
+  require('./src/scripts/generate-og-images')();
 };
