@@ -81,6 +81,6 @@ exports.createPages = async ({ graphql, actions, ...other }) => {
   });
 };
 
-exports.onPostBuild = () => {
-  require('./src/scripts/generate-og-images')();
+exports.onPostBuild = async () => {
+  await require('./src/scripts/generate-og-images')();
 };
