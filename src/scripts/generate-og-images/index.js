@@ -37,8 +37,10 @@ module.exports = async posts => {
   );
 
   await page.setContent(html, {
-    waitUntil: ['domcontentloaded', 'networkidle0'],
+    waitUntil: ['domcontentloaded'],
   });
+
+  await page.evaluateHandle('document.fonts.ready');
 
   await page.setViewport({
     width: 1200,
