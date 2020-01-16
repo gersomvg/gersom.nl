@@ -268,6 +268,7 @@ const GlobalStylesReset = createGlobalStyle`
 const GlobalStyles = createGlobalStyle`
   html {
     box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
   }
   body {
     font-size: 16px;
