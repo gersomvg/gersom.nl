@@ -44,6 +44,7 @@ export const PureSEO: React.FunctionComponent<PureSEOProps> = props => {
       {props.description && (
         <meta name="twitter:description" content={props.description} />
       )}
+      {props.image && <meta name="twitter:image" content={props.image} />}
     </Helmet>
   );
 };
