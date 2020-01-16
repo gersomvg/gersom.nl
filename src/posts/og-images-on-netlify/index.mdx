@@ -210,33 +210,19 @@ html = html.replace(
 
 # Configuring the Open Graph / Twitter meta tags
 
-Lastly, we organize our meta tags, so Twitter, WhatsApp and others know where to find our `og:image`.
+Lastly, we organize our meta tags, so Twitter, WhatsApp and others know where to find our image.
 
-```javascript{17-18}
+```javascript
 import Helmet from 'react-helmet';
 
-const SEO = props => {
-  return (
-    <Helmet>
-      <title>{props.title}</title>
-      <meta property="og:title" content={props.title} />
-      <meta name="twitter:title" content={props.title} />
+// DEPLOY_URL is a Netlify environment variable.
+// You can set this to localhost in a .env.development file, for dev testing.
+const image = `${process.env.DEPLOY_URL}/og-images/${slug}.jpeg`;
 
-      <meta name="description" content={props.description} />
-      <meta property="og:description" content={props.description} />
-      <meta name="twitter:description" content={props.description} />
-
-      <meta name="author" content={props.author} />
-      <meta name="twitter:creator" content={props.twitterAuthor} />
-
-      <meta property="og:image" content={props.image} />
-      <meta name="twitter:image" content={props.image} />
-
-      <meta property="og:type" content="website" />
-      <meta name="twitter:card" content={'summary_large_image'} />
-    </Helmet>
-  );
-};
+<Helmet>
+  <meta property="og:image" content={image} />
+  <meta name="twitter:image" content={image} />
+</Helmet>;
 ```
 
 > **That's it, thanks for reading!** Let me know on [Twitter](https://twitter.com/gersomvg) if this worked for you.
