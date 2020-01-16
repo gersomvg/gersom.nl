@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+import Helmet from 'react-helmet';
 
 import Layout from '../components/Layout';
 import H1 from '../components/mdx/H1';
@@ -36,6 +37,14 @@ const PostTemplate: React.FC<PostPageProps> = props => {
         description={mdx.frontmatter.description}
         author={mdx.frontmatter.author}
       />
+      <Helmet>
+        <meta
+          property="og:image"
+          content={`${
+            process.env.DEPLOY_URL
+          }/og-images/post/${mdx.fields.slug.replace(/\//g, '')}.jpeg`}
+        />
+      </Helmet>
       <H1>{mdx.frontmatter.title}</H1>
       <Paragraph>
         <Emphasis>{mdx.frontmatter.description}</Emphasis>

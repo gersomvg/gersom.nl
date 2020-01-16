@@ -66,5 +66,11 @@ module.exports = {
       },
     },
     'gatsby-plugin-catch-links',
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        whitelist: ['DEPLOY_URL'],
+      },
+    },
   ],
 };

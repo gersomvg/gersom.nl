@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { Link } from 'gatsby';
-import Helmet from 'react-helmet';
 
 import rootTheme from '../theme';
 

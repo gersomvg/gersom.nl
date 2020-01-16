@@ -1,5 +1,6 @@
-const path = require(`path`);
+const path = require('path');
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const generateOgImages = require('./src/scripts/generate-og-images');
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
@@ -20,6 +21,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
+
   const result = await graphql(`
     query {
       allMdx(
@@ -78,4 +80,31 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
+};
+
+exports.onPostBuild = async ({ graphql }) => {
+  const result = await graphql(`
+    query {
+      allMdx(
+        filter: {
+          fileAbsolutePath: { regex: "//posts//" }
+          frontmatter: { published: { eq: true } }
+        }
+      ) {
+        nodes {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+          }
+        }
+      }
+    }
+  `);
+  const mapped = result.data.allMdx.nodes.map(node => ({
+    title: node.frontmatter.title,
+    slug: node.fields.slug,
+  }));
+  await generateOgImages(mapped);
 };
