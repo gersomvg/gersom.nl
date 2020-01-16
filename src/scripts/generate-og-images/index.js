@@ -43,7 +43,7 @@ module.exports = async posts => {
   await page.setViewport({
     width: 1200,
     height: 632,
-    deviceScaleFactor: 2,
+    deviceScaleFactor: process.env.NETLIFY === 'true' ? 1 : 2,
   });
 
   let dir = path.resolve(__dirname, '../../../public/og-images');
