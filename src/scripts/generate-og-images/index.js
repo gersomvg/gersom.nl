@@ -32,7 +32,7 @@ module.exports = async posts => {
     }
   );
   html = html.replace(
-    './helvetica-neue-bold.ttf',
+    "'./helvetica-neue-bold.ttf'",
     `data:application/x-font-ttf;charset=utf-8;base64,${font}`
   );
 
