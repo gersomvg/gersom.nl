@@ -46,10 +46,10 @@ module.exports = async posts => {
     deviceScaleFactor: 2,
   });
 
-  const dir = path.resolve(__dirname, '../../../public/og-images/post');
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir);
-  }
+  let dir = path.resolve(__dirname, '../../../public/og-images');
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+  dir = `${dir}/post`;
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
 
   for (const post of posts) {
     await page.evaluate($post => {
