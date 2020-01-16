@@ -2,16 +2,63 @@
   <head>
     <meta charset="utf-8" />
     <style>
+      @font-face {
+        font-family: 'Helvetica Neue';
+        src: url('./helvetica-neue.bold.ttf') format('truetype');
+        font-weight: bold;
+      }
       body {
-        padding: 50px;
         margin: 0;
+        font-family: 'Helvetica Neue';
+        font-weight: bold;
+        color: rgba(255, 255, 255, 0.9);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      section {
+        background: #020204;
+        width: 1200px;
+        height: 632px;
+        position: relative;
+        overflow: hidden;
+      }
+      img {
+        position: absolute;
+        width: 632px;
+        height: 632px;
+        top: 0;
+        right: -60px;
+      }
+      h1 {
+        margin: 0;
+        position: absolute;
+        width: 620px;
+        left: 60px;
+        top: 60px;
+        font-size: 60px;
+        line-height: 100px;
+        height: 400px;
+        overflow: hidden;
+      }
+      p {
+        margin: 0;
+        position: absolute;
+        left: 60px;
+        bottom: 60px;
+        font-size: 48px;
+        line-height: 1.2em;
       }
     </style>
   </head>
 
   <body>
-    <h1>Test</h1>
-    <br />
-    <img src="{{avatar}}" />
+    <section>
+      <img src="./avatar.jpeg" />
+      <h1 id="title">
+        Foobar title
+      </h1>
+      <p>Gersom.nl</p>
+    </section>
   </body>
 </html>
