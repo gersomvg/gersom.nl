@@ -9,6 +9,7 @@ export type SEOProps = {
   meta?: { name: string; content: string }[];
   author?: string;
   twitterAuthor?: string;
+  image?: string;
 };
 
 export type PureSEOProps = SEOProps & { titleTemplate: string };
@@ -16,50 +17,34 @@ export type PureSEOProps = SEOProps & { titleTemplate: string };
 export const PureSEO: React.FunctionComponent<PureSEOProps> = props => {
   return (
     <Helmet
-      htmlAttributes={{
-        lang: props.lang ?? 'en',
-      }}
+      htmlAttributes={{ lang: props.lang ?? 'en' }}
       title={props.title}
       titleTemplate={props.titleTemplate}
-      meta={[
-        {
-          name: `description`,
-          content: props.description,
-        },
-        {
-          name: 'author',
-          content: props.author,
-        },
-        {
-          property: `og:title`,
-          content: props.title,
-        },
-        {
-          property: `og:description`,
-          content: props.description,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: props.twitterAuthor,
-        },
-        {
-          name: `twitter:title`,
-          content: props.title,
-        },
-        {
-          name: `twitter:description`,
-          content: props.description,
-        },
-      ].concat(props.meta ?? [])}
-    />
+    >
+      {props.description && (
+        <meta name="description" content={props.description} />
+      )}
+      {props.author && <meta name="author" content={props.author} />}
+
+      {props.title && <meta property="og:title" content={props.title} />}
+      {props.description && (
+        <meta property="og:description" content={props.description} />
+      )}
+      <meta property="og:type" content="website" />
+      {props.image && <meta property="og:image" content={props.image} />}
+
+      <meta
+        name="twitter:card"
+        content={props.image ? 'summary_large_image' : 'summary'}
+      />
+      {props.twitterAuthor && (
+        <meta name="twitter:creator" content={props.twitterAuthor} />
+      )}
+      {props.title && <meta name="twitter:title" content={props.title} />}
+      {props.description && (
+        <meta name="twitter:description" content={props.description} />
+      )}
+    </Helmet>
   );
 };
 
@@ -87,6 +72,7 @@ const SEO: React.FC<SEOProps> = props => {
       description={props.description ?? site.siteMetadata.description}
       author={props.author ?? site.siteMetadata.author}
       twitterAuthor={props.twitterAuthor ?? site.siteMetadata.twitterAuthor}
+      image={props.image}
     />
   );
 };
