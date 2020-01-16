@@ -25,14 +25,11 @@ module.exports = async posts => {
     `data:image/jpeg;charset=utf-8;base64,${avatar}`
   );
 
-  let font = fs.readFileSync(
-    path.resolve(__dirname, './helvetica-neue-bold.ttf'),
-    {
-      encoding: 'base64',
-    }
-  );
+  let font = fs.readFileSync(path.resolve(__dirname, './Roboto-Bold.ttf'), {
+    encoding: 'base64',
+  });
   html = html.replace(
-    "'./helvetica-neue-bold.ttf'",
+    "'./Roboto-Bold.ttf'",
     `data:application/x-font-ttf;charset=utf-8;base64,${font}`
   );
 

@@ -50,6 +50,7 @@ const Wrapper = styled.pre`
 
   .gatsby-highlight-code-line {
     display: block;
+    min-height: 1.5em;
     background: rgba(255, 255, 255, 0.1);
     margin-left: -3.8em;
     margin-right: -1em;
