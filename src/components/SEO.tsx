@@ -69,7 +69,7 @@ const SEO: React.FC<SEOProps> = props => {
     <PureSEO
       {...props}
       title={props.title}
-      titleTemplate={`%s » ${site.siteMetadata.title} 👨‍💻`}
+      titleTemplate={`%s - ${site.siteMetadata.title} 👨‍💻`}
       description={props.description ?? site.siteMetadata.description}
       author={props.author ?? site.siteMetadata.author}
       twitterAuthor={props.twitterAuthor ?? site.siteMetadata.twitterAuthor}
