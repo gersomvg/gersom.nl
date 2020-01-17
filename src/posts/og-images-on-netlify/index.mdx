@@ -86,7 +86,7 @@ module.exports = async posts => {
 
 Ok, I'm kidding, it does not work outside of the box. The Netlify build step runs with `NODE_ENV=development`, which confuses `chrome-aws-lambda`. We could work around this by setting the NODE_ENV to production, but this has unintended side effects. Another way to force using the serverless chrome instance is by setting the `AWS_LAMBDA_FUNCTION_NAME` environment variable ([docs](https://github.com/alixaxel/chrome-aws-lambda/wiki/HOWTO:-Local-Development#environment-variables)).
 
-Netlify does let us set this environment variable through their UI, so we'll just hack it into our netlify config.
+Netlify doesn't let us set this environment variable through their UI, so we'll just hack it into our netlify config.
 
 ```toml
 # netlify.toml
