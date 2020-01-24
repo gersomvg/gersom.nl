@@ -29,11 +29,12 @@ const ULStyled = styled.ul`
       top: 0.7em;
       right: 100%;
       margin-right: -0.4em;
-      border-left: 0.36em solid ${p => opacity(p.theme.color.text, 0.62)};
+      color: ${p => opacity(p.theme.color.text, 0.62)};
+      border-left: 0.36em solid currentColor;
       width: 0.36em;
       height: 0.36em;
       ${p => p.theme.dark} {
-        border-color: ${p => opacity(p.theme.color.textLight, 0.62)};
+        color: ${p => opacity(p.theme.color.textLight, 0.62)};
       }
     }
   }
@@ -55,7 +56,11 @@ const OLStyled = styled(ULAsOL)`
   counter-reset: list;
   > li {
     :before {
-      margin-right: -0.9em;
+      border: none;
+      margin-right: -0.5em;
+      top: 0;
+      text-align: right;
+      font-weight: 500;
       counter-increment: list;
       content: counter(list) '.';
     }
