@@ -25,22 +25,16 @@ const ULStyled = styled.ul`
     }
     :before {
       position: absolute;
+      content: '';
+      top: 0.7em;
       right: 100%;
-      margin-right: -0.55em;
-      content: '▪︎';
-      text-align: right;
-      line-height: 1.66;
-      font-weight: 500;
-      font-size: 16px;
+      margin-right: -0.4em;
       color: ${p => opacity(p.theme.color.text, 0.62)};
+      border-left: 0.36em solid currentColor;
+      width: 0.36em;
+      height: 0.36em;
       ${p => p.theme.dark} {
         color: ${p => opacity(p.theme.color.textLight, 0.62)};
-      }
-      ${p => p.theme.m} {
-        font-size: 19px;
-      }
-      ${p => p.theme.l} {
-        font-size: 20px;
       }
     }
   }
@@ -62,7 +56,11 @@ const OLStyled = styled(ULAsOL)`
   counter-reset: list;
   > li {
     :before {
-      margin-right: -0.9em;
+      border: none;
+      margin-right: -0.5em;
+      top: 0;
+      text-align: right;
+      font-weight: 500;
       counter-increment: list;
       content: counter(list) '.';
     }

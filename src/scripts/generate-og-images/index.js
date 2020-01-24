@@ -1,5 +1,5 @@
 const chromium = require('chrome-aws-lambda');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 
 module.exports = async posts => {
@@ -8,16 +8,16 @@ module.exports = async posts => {
   const browser = await chromium.puppeteer.launch({
     args: chromium.args,
     executablePath: await chromium.executablePath,
-    headless: chromium.headless,
+    headless: true, //chromium.headless,
   });
 
   const page = await browser.newPage();
 
-  let html = fs
-    .readFileSync(path.resolve(__dirname, './template.html'))
-    .toString();
+  let html = (
+    await fs.readFile(path.resolve(__dirname, './template.html'))
+  ).toString();
 
-  let avatar = fs.readFileSync(path.resolve(__dirname, './avatar.jpeg'), {
+  let avatar = await fs.readFile(path.resolve(__dirname, './avatar.jpeg'), {
     encoding: 'base64',
   });
   html = html.replace(
@@ -25,7 +25,7 @@ module.exports = async posts => {
     `data:image/jpeg;charset=utf-8;base64,${avatar}`
   );
 
-  let font = fs.readFileSync(path.resolve(__dirname, './Roboto-Bold.ttf'), {
+  let font = await fs.readFile(path.resolve(__dirname, './Roboto-Bold.ttf'), {
     encoding: 'base64',
   });
   html = html.replace(
@@ -45,10 +45,8 @@ module.exports = async posts => {
     deviceScaleFactor: process.env.NETLIFY === 'true' ? 1 : 2,
   });
 
-  let dir = path.resolve(__dirname, '../../../public/og-images');
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
-  dir = `${dir}/post`;
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+  let dir = path.resolve(__dirname, '../../../public/og-images/post');
+  await fs.ensureDir(dir);
 
   for (const post of posts) {
     await page.evaluate($post => {
