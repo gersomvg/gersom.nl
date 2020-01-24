@@ -45,8 +45,9 @@ module.exports = async posts => {
     deviceScaleFactor: process.env.NETLIFY === 'true' ? 1 : 2,
   });
 
-  let dir = path.resolve(__dirname, '../../../public/og-images/post');
-  await fs.ensureDir(dir);
+  const baseDir = path.resolve(__dirname, '../../../public/og-images/');
+  fs.ensureDir(path.resolve(baseDir, 'post'));
+  fs.ensureDir(path.resolve(baseDir, 'recipe'));
 
   for (const post of posts) {
     await page.evaluate($post => {
@@ -54,7 +55,7 @@ module.exports = async posts => {
       dom.innerHTML = $post.title;
     }, post);
     await page.screenshot({
-      path: `${dir}/${post.slug.replace(/\//g, '')}.jpeg`,
+      path: `${baseDir}${post.slug.slice(0, -1)}.jpeg`,
       type: 'jpeg',
       quality: 100,
       clip: { x: 0, y: 0, width: 1200, height: 632 },

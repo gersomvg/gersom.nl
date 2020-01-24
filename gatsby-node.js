@@ -16,7 +16,6 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     const slug = createFilePath({
       node,
       getNode,
-      basePath: 'posts',
       trailingSlash: true,
     });
     createNodeField({
@@ -34,7 +33,7 @@ exports.createPages = async ({ graphql, actions }) => {
     query {
       allMdx(
         filter: {
-          fileAbsolutePath: { regex: "//posts//" }
+          fields: { slug: { regex: "/^/(post|recipe)//" } }
           frontmatter: { published: { eq: true } }
         }
         sort: { order: DESC, fields: frontmatter___date }
@@ -57,11 +56,13 @@ exports.createPages = async ({ graphql, actions }) => {
   const categorySet = new Set();
 
   result.data.allMdx.edges.forEach(({ node }) => {
-    (node.frontmatter.categories || []).forEach(category =>
-      categorySet.add(category)
-    );
+    if (node.fields.slug.startsWith('/post/') && node.frontmatter.categories) {
+      for (const category of node.frontmatter.categories) {
+        categorySet.add(category);
+      }
+    }
     createPage({
-      path: `post${node.fields.slug}`,
+      path: node.fields.slug,
       component: path.resolve('./src/templates/post.tsx'),
       context: {
         id: node.id,
@@ -100,7 +101,7 @@ exports.onPostBuild = async ({ graphql }) => {
     query {
       allMdx(
         filter: {
-          fileAbsolutePath: { regex: "//posts//" }
+          fields: { slug: { regex: "/^/(post|recipe)//" } }
           frontmatter: { published: { eq: true } }
         }
       ) {
@@ -122,6 +123,4 @@ exports.onPostBuild = async ({ graphql }) => {
 
   await generateOgImages(mapped);
   await generateCV();
-
-  await fs.remove(path.resolve('./public/cv/'));
 };

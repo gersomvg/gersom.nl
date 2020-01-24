@@ -45,7 +45,7 @@ export const query = graphql`
   query($activeCategory: [String]) {
     allMdx(
       filter: {
-        fileAbsolutePath: { regex: "//posts//" }
+        fields: { slug: { regex: "/^/post//" } }
         frontmatter: {
           published: { eq: true }
           listed: { eq: true }

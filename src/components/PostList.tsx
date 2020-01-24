@@ -25,7 +25,7 @@ const PostList: React.FunctionComponent<PostListProps> = props => {
     <Wrapper>
       {props.edges.map(({ node }) => (
         <div key={node.id}>
-          <LinkStyled to={`/post${node.fields.slug}`}>
+          <LinkStyled to={node.fields.slug}>
             <Emoji>{getPostEmoji(node.frontmatter.categories[0])}</Emoji>
             <Title>{node.frontmatter.title}</Title>
           </LinkStyled>

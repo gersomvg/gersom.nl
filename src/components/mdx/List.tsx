@@ -29,12 +29,11 @@ const ULStyled = styled.ul`
       top: 0.7em;
       right: 100%;
       margin-right: -0.4em;
-      color: ${p => opacity(p.theme.color.text, 0.62)};
-      border-left: 0.36em solid currentColor;
-      width: 0.36em;
-      height: 0.36em;
+      color: ${p => opacity(p.theme.color.text, 0.55)};
+      border: 0.18em solid currentColor;
+      border-radius: 38%;
       ${p => p.theme.dark} {
-        color: ${p => opacity(p.theme.color.textLight, 0.62)};
+        color: ${p => opacity(p.theme.color.textLight, 0.55)};
       }
     }
   }
@@ -57,7 +56,8 @@ const OLStyled = styled(ULAsOL)`
   > li {
     :before {
       border: none;
-      margin-right: -0.5em;
+      border-radius: 0;
+      margin-right: -0.9em;
       top: 0;
       text-align: right;
       font-weight: 500;

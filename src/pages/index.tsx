@@ -51,9 +51,9 @@ const IndexPage: React.FC<IndexPageProps> = props => {
       <PostList edges={props.data.allMdx.edges} />
       <TitleWithCTA title="Work" ctaText="See portfolio" ctaTo="/work/" />
       <Paragraph>
-        I’m a full-stack JS developer. I work for Polder, but I’m also open for
-        new freelance opportunities. Most of my current time is spent coding in
-        React (Native) and NodeJS.
+        I’m an Amsterdam-based freelance full-stack JavaScript developer that is
+        looking for challenging projects with social or sustainable impact. Most
+        of my current time is spent coding in React (Native) and NodeJS.
       </Paragraph>
       <TitleWithCTA
         title="Running"
@@ -96,11 +96,13 @@ export const query = graphql`
     }
     allMdx(
       filter: {
-        fileAbsolutePath: { regex: "//posts//" }
-        frontmatter: { published: { eq: true }, listed: { eq: true } }
+        frontmatter: {
+          published: { eq: true }
+          listed: { eq: true }
+          featured: { eq: true }
+        }
       }
       sort: { order: DESC, fields: frontmatter___date }
-      limit: 3
     ) {
       edges {
         node {
@@ -112,6 +114,7 @@ export const query = graphql`
             categories
             date
             title
+            featured
           }
         }
       }

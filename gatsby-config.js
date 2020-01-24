@@ -20,13 +20,6 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'posts',
-        path: `${__dirname}/src/posts`,
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
         name: 'mdx',
         path: `${__dirname}/src/mdx`,
       },
@@ -52,6 +45,7 @@ module.exports = {
       resolve: 'gatsby-plugin-mdx',
       options: {
         gatsbyRemarkPlugins: [
+          { resolve: 'gatsby-remark-autolink-headers', options: {} },
           {
             resolve: 'gatsby-remark-images',
             options: {
