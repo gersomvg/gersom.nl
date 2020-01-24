@@ -25,15 +25,15 @@ const ULStyled = styled.ul`
     }
     :before {
       position: absolute;
+      content: '';
+      top: 0.7em;
       right: 100%;
-      margin-right: -0.55em;
-      content: '▪︎';
-      text-align: right;
-      line-height: 1.66;
-      font-weight: 500;
-      color: ${p => opacity(p.theme.color.text, 0.62)};
+      margin-right: -0.4em;
+      border-left: 0.36em solid ${p => opacity(p.theme.color.text, 0.62)};
+      width: 0.36em;
+      height: 0.36em;
       ${p => p.theme.dark} {
-        color: ${p => opacity(p.theme.color.textLight, 0.62)};
+        border-color: ${p => opacity(p.theme.color.textLight, 0.62)};
       }
     }
   }

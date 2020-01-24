@@ -61,7 +61,7 @@ exports.createPages = async ({ graphql, actions }) => {
       categorySet.add(category)
     );
     createPage({
-      path: 'post${node.fields.slug}',
+      path: `post${node.fields.slug}`,
       component: path.resolve('./src/templates/post.tsx'),
       context: {
         id: node.id,
