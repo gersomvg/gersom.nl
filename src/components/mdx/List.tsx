@@ -31,16 +31,9 @@ const ULStyled = styled.ul`
       text-align: right;
       line-height: 1.66;
       font-weight: 500;
-      font-size: 16px;
       color: ${p => opacity(p.theme.color.text, 0.62)};
       ${p => p.theme.dark} {
         color: ${p => opacity(p.theme.color.textLight, 0.62)};
-      }
-      ${p => p.theme.m} {
-        font-size: 19px;
-      }
-      ${p => p.theme.l} {
-        font-size: 20px;
       }
     }
   }
