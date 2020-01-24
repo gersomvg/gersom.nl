@@ -1,10 +1,18 @@
 const path = require('path');
+const fs = require('fs-extra');
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const generateOgImages = require('./src/scripts/generate-og-images');
+const generateCV = require('./src/scripts/generate-cv');
+
+exports.onCreateBabelConfig = ({ actions }) => {
+  actions.setBabelPlugin({
+    name: 'babel-plugin-preval',
+  });
+};
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
-  if (node.internal.type === `Mdx`) {
+  if (node.internal.type === 'Mdx') {
     const slug = createFilePath({
       node,
       getNode,
@@ -53,8 +61,8 @@ exports.createPages = async ({ graphql, actions }) => {
       categorySet.add(category)
     );
     createPage({
-      path: `post${node.fields.slug}`,
-      component: path.resolve(`./src/templates/post.tsx`),
+      path: 'post${node.fields.slug}',
+      component: path.resolve('./src/templates/post.tsx'),
       context: {
         id: node.id,
       },
@@ -64,8 +72,8 @@ exports.createPages = async ({ graphql, actions }) => {
   const categoryArray = Array.from(categorySet);
 
   createPage({
-    path: `posts/`,
-    component: path.resolve(`./src/templates/posts.tsx`),
+    path: 'posts/',
+    component: path.resolve('./src/templates/posts.tsx'),
     context: {
       categories: categoryArray,
     },
@@ -73,12 +81,17 @@ exports.createPages = async ({ graphql, actions }) => {
   categoryArray.forEach(category => {
     createPage({
       path: `posts/${category}/`,
-      component: path.resolve(`./src/templates/posts.tsx`),
+      component: path.resolve('./src/templates/posts.tsx'),
       context: {
         activeCategory: category,
         categories: categoryArray,
       },
     });
+  });
+
+  createPage({
+    path: 'cv/',
+    component: path.resolve('./src/templates/cv/cv.tsx'),
   });
 };
 
@@ -106,5 +119,9 @@ exports.onPostBuild = async ({ graphql }) => {
     title: node.frontmatter.title,
     slug: node.fields.slug,
   }));
+
   await generateOgImages(mapped);
+  await generateCV();
+
+  await fs.remove(path.resolve('./public/cv/'));
 };

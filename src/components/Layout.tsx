@@ -1,8 +1,8 @@
 import React from 'react';
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'gatsby';
 
-import rootTheme from '../theme';
+import ThemeProvider from './ThemeProvider';
 
 type Props = {
   children: React.ReactNode;
@@ -10,27 +10,22 @@ type Props = {
 
 const Layout: React.FunctionComponent<Props> = ({ children }) => {
   return (
-    <>
-      <ThemeProvider theme={rootTheme}>
-        <GlobalStylesReset />
-        <GlobalStyles />
-
-        <Header>
-          <SiteNameBigger>
-            <Link to="/">Gersom van Ginkel</Link>
-          </SiteNameBigger>
-          <SiteNameSmaller>
-            <Link to="/">Gersom</Link>
-          </SiteNameSmaller>
-          <Nav>
-            <NavItem to="/posts/">Posts</NavItem>
-            <NavItem to="/work/">Work</NavItem>
-            <NavItem to="/contact/">Contact</NavItem>
-          </Nav>
-        </Header>
-        <Content>{children}</Content>
-      </ThemeProvider>
-    </>
+    <ThemeProvider>
+      <Header>
+        <SiteNameBigger>
+          <Link to="/">Gersom van Ginkel</Link>
+        </SiteNameBigger>
+        <SiteNameSmaller>
+          <Link to="/">Gersom</Link>
+        </SiteNameSmaller>
+        <Nav>
+          <NavItem to="/posts/">Posts</NavItem>
+          <NavItem to="/work/">Work</NavItem>
+          <NavItem to="/contact/">Contact</NavItem>
+        </Nav>
+      </Header>
+      <Content>{children}</Content>
+    </ThemeProvider>
   );
 };
 
@@ -132,195 +127,6 @@ const Content = styled.section`
   > :last-child {
     margin-bottom: 0;
   }
-`;
-
-const GlobalStylesReset = createGlobalStyle`
-  /* http://meyerweb.com/eric/tools/css/reset/
-	   v2.0 | 20110126
-	   License: none (public domain)
-	*/
-  html,
-  body,
-  div,
-  span,
-  applet,
-  object,
-  iframe,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  blockquote,
-  pre,
-  a,
-  abbr,
-  acronym,
-  address,
-  big,
-  cite,
-  code,
-  del,
-  dfn,
-  em,
-  img,
-  ins,
-  kbd,
-  q,
-  s,
-  samp,
-  small,
-  strike,
-  strong,
-  sub,
-  sup,
-  tt,
-  var,
-  b,
-  u,
-  i,
-  center,
-  dl,
-  dt,
-  dd,
-  ol,
-  ul,
-  li,
-  fieldset,
-  form,
-  label,
-  legend,
-  table,
-  caption,
-  tbody,
-  tfoot,
-  thead,
-  tr,
-  th,
-  td,
-  article,
-  aside,
-  canvas,
-  details,
-  embed,
-  figure,
-  figcaption,
-  footer,
-  header,
-  hgroup,
-  menu,
-  nav,
-  output,
-  ruby,
-  section,
-  summary,
-  time,
-  mark,
-  audio,
-  video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-  }
-  /* HTML5 display-role reset for older browsers */
-  article,
-  aside,
-  details,
-  figcaption,
-  figure,
-  footer,
-  header,
-  hgroup,
-  menu,
-  nav,
-  section {
-    display: block;
-  }
-  body {
-    line-height: 1;
-  }
-  ol,
-  ul {
-    list-style: none;
-  }
-  blockquote,
-  q {
-    quotes: none;
-  }
-  blockquote:before,
-  blockquote:after,
-  q:before,
-  q:after {
-    content: '';
-    content: none;
-  }
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
-`;
-
-const GlobalStyles = createGlobalStyle`
-  html {
-    box-sizing: border-box;
-    -webkit-text-size-adjust: 100%;
-  }
-  body {
-    font-size: 16px;
-    line-height: 1.4;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-      'Segoe UI Symbol';
-    margin: 0;
-    height: 100%;
-    background: ${p => p.theme.color.bodyBg};
-    color: ${p => p.theme.color.text};
-    ${p => p.theme.dark} {
-      background: ${p => p.theme.color.bodyBgDark};
-      color: ${p => p.theme.color.textLight};
-    }
-  }
-  * {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  *,
-  *:before,
-  *:after {
-      box-sizing: inherit;
-  }
-
-  button {
-        border: none;
-        margin: 0;
-        padding: 0;
-        width: auto;
-        overflow: visible;
-        background: transparent;
-        color: inherit;
-        font: inherit;
-        line-height: normal;
-        -webkit-font-smoothing: inherit;
-        -moz-osx-font-smoothing: inherit;
-        -webkit-appearance: none;
-        cursor: pointer;
-    }
-
-    button::-moz-focus-inner {
-        border: 0;
-        padding: 0;
-    }
-
-    input {
-        padding: 0;
-        margin: 0;
-        border: 0;
-    }
 `;
 
 export default Layout;

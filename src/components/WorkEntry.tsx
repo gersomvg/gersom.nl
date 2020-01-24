@@ -27,20 +27,19 @@ const Layout: React.FunctionComponent<Props> = props => {
 
 const Wrapper = styled.div`
   width: 100%;
-  max-width: ${p => p.theme.pageMaxWidth};
-  margin: 40px 0;
+  margin: 2em 0;
+  page-break-inside: avoid;
   ${p => p.theme.ml} {
     display: flex;
   }
 `;
 
 const Left = styled.div`
-  ${p => p.theme.m} {
-    flex: 1 0 140px;
+  ${p => p.theme.ml} {
+    flex: 0 0 9em;
     margin-right: 20px;
   }
   ${p => p.theme.l} {
-    flex: 1 0 180px;
     margin-right: 30px;
   }
 `;
@@ -65,7 +64,7 @@ const Name = styled(Paragraph)`
 
 const DateText = styled.p`
   font-weight: medium;
-  font-size: 15px;
+  font-size: 0.75em;
   opacity: 0.75;
   letter-spacing: 0;
   margin-top: 0.5em;
