@@ -5,7 +5,7 @@
   </a>
 </p>
 <h1 align="center">
-  Gersom.nl - My Personal Website
+  Gersom.nl - Personal Website
 </h1>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/6d743167-16ae-4d82-b483-2bf0bc398efd/deploy-status)](https://app.netlify.com/sites/gersom/deploys)
