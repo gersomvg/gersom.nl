@@ -70,7 +70,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        whitelist: ['DEPLOY_URL'],
+        whitelist: ['DEPLOY_URL', 'URL'],
       },
     },
   ],
