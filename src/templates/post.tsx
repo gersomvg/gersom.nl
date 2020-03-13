@@ -39,9 +39,10 @@ export type PostPageProps = {
 
 const PostTemplate: React.FC<PostPageProps> = props => {
   const mdx = props.data.mdx;
-  const ogImageUrl = `${
-    process.env.DEPLOY_URL
-  }/og-images${mdx.fields.slug.slice(0, -1)}.jpeg`;
+  const ogImageUrl = `${process.env.URL}/og-images${mdx.fields.slug.slice(
+    0,
+    -1
+  )}.jpeg`;
   return (
     <Layout>
       <SEO
