@@ -29,11 +29,11 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'gatsby-starter-default',
-        short_name: 'starter',
+        name: "Gersom van Ginkel's personal website",
+        short_name: 'Gersom van Ginkel',
         start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
+        background_color: '#ffffff',
+        theme_color: '#007aff',
         display: 'minimal-ui',
         icon: 'src/images/favicon.png', // This path is relative to the root of the site.
       },
