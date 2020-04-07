@@ -87,4 +87,8 @@ const LiStyled = styled(ParagraphAsLi)`
   > :last-child {
     margin-bottom: 0;
   }
+  > ul,
+  > ol {
+    margin: 0.4em 0;
+  }
 `;
