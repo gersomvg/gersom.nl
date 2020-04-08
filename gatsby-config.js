@@ -82,5 +82,6 @@ module.exports = {
         exclude: ['/cv'],
       },
     },
+    'gatsby-plugin-robots-txt',
   ],
 };
