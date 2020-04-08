@@ -1,5 +1,8 @@
+require('dotenv').config({ path: '.env.development' });
+
 module.exports = {
   siteMetadata: {
+    siteUrl: process.env.URL,
     title: 'Gersom van Ginkel',
     description:
       'From Amsterdam with love, this is the space where I write about code, running, and veganism.',
@@ -70,7 +73,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        whitelist: ['DEPLOY_URL', 'URL'],
+        whitelist: ['URL'],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        exclude: ['/cv'],
       },
     },
   ],
