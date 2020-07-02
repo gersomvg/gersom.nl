@@ -3,11 +3,13 @@ import styled from 'styled-components';
 
 import A from './mdx/A';
 import Paragraph from './mdx/Paragraph';
+import opacity from '../theme/opacity';
 
 type Props = {
   name: string;
   href?: string;
   date: string;
+  tools?: string[];
   children: React.ReactNode;
 };
 
@@ -20,7 +22,16 @@ const Layout: React.FunctionComponent<Props> = props => {
         </Name>
         <DateText>{props.date}</DateText>
       </Left>
-      <Right>{props.children}</Right>
+      <Right hasTools={!!props.tools}>
+        {props.children}
+        {props.tools && (
+          <Tools>
+            {props.tools.map(tool => (
+              <Tool>{tool}</Tool>
+            ))}
+          </Tools>
+        )}
+      </Right>
     </Wrapper>
   );
 };
@@ -44,7 +55,7 @@ const Left = styled.div`
   }
 `;
 
-const Right = styled.div`
+const Right = styled.div<{ hasTools: boolean }>`
   ${p => p.theme.ml} {
     flex: 1 1 auto;
     min-width: 0;
@@ -52,7 +63,7 @@ const Right = styled.div`
   > :first-child {
     margin-top: 0;
   }
-  > :last-child {
+  > :nth-last-child(${p => (p.hasTools ? 2 : 1)}) {
     margin-bottom: 0;
   }
 `;
@@ -70,6 +81,29 @@ const DateText = styled.p`
   margin-top: 0.5em;
   ${p => p.theme.s} {
     margin-bottom: 1em;
+  }
+`;
+
+const Tools = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.5em -0.2em 0;
+`;
+
+const Tool = styled.li`
+  border-radius: 3px;
+  background-color: ${p => opacity(p.theme.color.accent, 0.1)};
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
+    monospace;
+  font-size: 0.75em;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  padding: 0.2em 0.3em 0.1em;
+  margin: 0.2em;
+  ${p => p.theme.dark} {
+    background-color: ${p => opacity(p.theme.color.accentLight, 0.12)};
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
 `;
 
