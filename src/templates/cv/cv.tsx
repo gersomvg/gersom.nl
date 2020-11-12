@@ -49,7 +49,6 @@ const CV: React.FC<CVProps> = props => {
             <p>
               <A href="mailto:inbox@gersom.nl">inbox@gersom.nl</A>
             </p>
-            <p>♂ Male (1992)</p>
           </HeroRight>
         </Hero>
         <MDXWrapper>
@@ -107,6 +106,7 @@ const HeroLeft = styled.div`
 const HeroRight = styled.div`
   text-align: right;
   line-height: 1.8;
+  align-self: center;
 `;
 
 const MainTitle = styled(H1)`
