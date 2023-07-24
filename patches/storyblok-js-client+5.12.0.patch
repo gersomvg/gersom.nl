@@ -1,0 +1,13 @@
+diff --git a/node_modules/storyblok-js-client/dist/index.mjs b/node_modules/storyblok-js-client/dist/index.mjs
+index 6c5e0f5..0e758dd 100644
+--- a/node_modules/storyblok-js-client/dist/index.mjs
++++ b/node_modules/storyblok-js-client/dist/index.mjs
+@@ -487,7 +487,7 @@ class rt {
+ const v = "SB-Agent", b = {
+   defaultAgentName: "SB-JS-CLIENT",
+   defaultAgentVersion: "SB-Agent-Version",
+-  packageVersion: process.env.npm_package_version || "5.0.0"
++  packageVersion: (typeof process !== 'undefined' && process.env.npm_package_version) || "5.0.0"
+ };
+ let m = {};
+ const p = {};

@@ -1,31 +1,38 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://gersom.nl">
-    <img alt="Gersom.nl" src="./src/images/favicon.png" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gersom.nl - Personal Website
-</h1>
+# create-svelte
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/6d743167-16ae-4d82-b483-2bf0bc398efd/deploy-status)](https://app.netlify.com/sites/gersom/deploys)
+Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
-## 🚀 Quick start
+## Creating a project
 
-1.  **Install dependencies**
+If you're seeing this, you've probably already done this step. Congrats!
 
-    ```shell
-    npm i
-    ```
+```bash
+# create a new project in the current directory
+npm create svelte@latest
 
-1.  **Run development server**
+# create a new project in my-app
+npm create svelte@latest my-app
+```
 
-    ```shell
-    npm start
-    ```
+## Developing
 
-1.  **Start developing!**
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-    The site is now running at `http://localhost:8000`.
+```bash
+npm run dev
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data._
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
+
+## Building
+
+To create a production version of your app:
+
+```bash
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.

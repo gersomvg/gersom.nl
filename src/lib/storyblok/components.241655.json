@@ -1,0 +1,33 @@
+{
+  "components": [
+    {
+      "name": "home-gallery",
+      "display_name": "Home Gallery",
+      "created_at": "2023-07-14T10:53:21.096Z",
+      "updated_at": "2023-07-14T11:00:21.387Z",
+      "id": 4274922,
+      "schema": {
+        "assets": {
+          "type": "multiasset",
+          "display_name": "Assets",
+          "required": true,
+          "filetypes": [
+            "images"
+          ],
+          "asset_folder_id": 279695
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": true,
+      "preview_tmpl": null,
+      "is_nestable": false,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "Home Gallery",
+      "component_group_uuid": null,
+      "color": null,
+      "icon": "block-image"
+    }
+  ]
+}

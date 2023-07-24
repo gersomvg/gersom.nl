@@ -1,0 +1,1 @@
+export type Names = 'linkedin' | 'github' | 'email'
