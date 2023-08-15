@@ -4,6 +4,7 @@
 	"trailingComma": "all",
 	"semi": false,
 	"printWidth": 100,
+	"quoteProps": "consistent",
 	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
 	"pluginSearchDirs": ["."],
 	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]

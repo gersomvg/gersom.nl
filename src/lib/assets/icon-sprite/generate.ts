@@ -79,6 +79,6 @@ await generateTypes({
 })
 async function generateTypes({ files, outputPath }: { files: string[]; outputPath: string }) {
 	const names = files.map((file) => path.basename(file, '.svg'))
-	const output = `export type Names = ${names.map((n) => `'${n}'`).join(' | ')}`
+	const output = `export type IconName = ${names.map((n) => `'${n}'`).join(' | ')}`
 	return fs.writeFile(outputPath, output, 'utf8')
 }

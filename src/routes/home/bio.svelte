@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { ComponentType } from 'svelte'
 	import IconSprite from '$lib/icon-sprite.svelte'
 
 	const today = new Date()
@@ -32,10 +31,11 @@
 			<a
 				{href}
 				{title}
+				aria-label={title}
 				target="_blank"
-				class="flex items-center justify-center rounded p-3 text-gray-900 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 focus:outline-none focus-visible:ring focus-visible:ring-gray-500"
+				class="flex items-center justify-center rounded p-3 text-gray-900 hover:bg-gray-200 focus:outline-none focus-visible:ring focus-visible:ring-gray-500 dark:text-gray-300 dark:hover:bg-gray-800"
 			>
-				<IconSprite {name} class="w-8 h-8" />
+				<IconSprite {name} class="h-8 w-8" />
 			</a>
 		{/each}
 	</div>

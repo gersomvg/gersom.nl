@@ -1,9 +1,8 @@
 <script>
+	import { initUIDStore } from '$lib/uid-store'
 	import '../app.css'
-	import IconsSpriteURL from '$lib/assets/icon-sprite/generated/icons.svg?url'
+
+	initUIDStore()
 </script>
 
-<svelte:head>
-	<link rel="preload" href={IconsSpriteURL} as="image" type="image/svg+xml" />
-</svelte:head>
 <slot />

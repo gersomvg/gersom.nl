@@ -1,28 +1,60 @@
 <script lang="ts">
-	export let assets: Array<{ filename: string; alt?: string }>
-	export let getSrcset: (filename: string, widths: number[]) => string
+	import { getSrcset } from '$lib/cdn/images'
+	import IconSprite from '$lib/icon-sprite.svelte'
+	import type { Image } from '$lib/server/models'
 
-	const sizes = '(min-width: 640px) 42vw, 100vw'
-	const widths = [400, 800, 1200]
+	export let images: Image[]
+
+	let activeIndex = 0
+
+	function slideDistance(idx1: number, idx2: number, length: number): number {
+		const betweenDist = Math.abs(idx1 - idx2)
+		const loopDist = length - Math.abs(idx1 - idx2)
+		return Math.min(betweenDist, loopDist)
+	}
 </script>
 
-<div class="relative flex-1 rounded-lg pb-[75%]">
-	{#each assets as asset, index}
-		<img
-			{sizes}
-			srcset={getSrcset(asset.filename, widths)}
-			alt=""
-			role="presentation"
-			class="absolute top-2 h-full w-full rounded-lg object-cover opacity-70 blur-md md:blur-lg"
-			class:hidden={index !== 0}
-		/>
-		<img
-			{sizes}
-			srcset={getSrcset(asset.filename, widths)}
-			alt={asset.alt}
-			class="absolute h-full w-full rounded-lg object-cover"
-			class:hidden={index !== 0}
-		/>
+<section
+	aria-label="Photos taken from or by Gersom"
+	aria-roledescription="carousel"
+	class="group/a relative flex-1 rounded-lg pb-[75%]"
+>
+	{#each images as image, index}
+		<section aria-label={image.caption} aria-roledescription="slide">
+			<img
+				sizes={'(min-width: 1024px) 33vw, (min-width: 640px) 42vw, 100vw'}
+				srcset={slideDistance(activeIndex, index, images.length) <= 1
+					? getSrcset(image.filename)
+					: undefined}
+				alt={image.caption}
+				class="absolute h-full w-full rounded-lg object-cover duration-500"
+				class:opacity-0={index !== activeIndex}
+				class:z-10={index === activeIndex}
+				class:transition={index === activeIndex}
+				aria-hidden={index !== activeIndex}
+			/>
+		</section>
 	{/each}
-	<div class="absolute inset-0 rounded-lg border border-black/20 dark:border-white/20" />
-</div>
+	{#each ['l', 'r'] as pos}
+		<button
+			on:click={() =>
+				(activeIndex = (activeIndex + images.length + (pos === 'l' ? -1 : +1)) % images.length)}
+			class="group/b absolute bottom-0 top-0 z-20 flex w-1/3 justify-end text-white focus:outline-none"
+			class:left-0={pos === 'l'}
+			class:rotate-180={pos === 'l'}
+			class:right-0={pos === 'r'}
+			aria-label={pos === 'l' ? 'Previous' : 'Next'}
+		>
+			<div
+				class="absolute inset-0 bg-gradient-to-l from-black/20 to-black/0 opacity-0 transition group-hover/b:opacity-100 group-focus-visible/b:opacity-100"
+			/>
+			<IconSprite
+				name="chevron-right"
+				class="mr-4 h-full w-4 self-center opacity-40 drop-shadow transition group-hover/a:group-hover/b:opacity-100 group-hover/a:opacity-60 group-focus-visible/b:opacity-100"
+			/>
+		</button>
+	{/each}
+	<div
+		class="pointer-events-none absolute inset-0 z-20 rounded-lg border border-black/20 dark:border-white/20"
+	/>
+</section>
