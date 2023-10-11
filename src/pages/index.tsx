@@ -38,9 +38,8 @@ const IndexPage: React.FC<IndexPageProps> = props => {
         <HeroTextGroup>
           <HeroTitle>Hi There! 👋</HeroTitle>
           <HeroSub>
-            From Amsterdam with love, this is the space where I write about
-            software development, running, veganism, and other personal
-            interests.
+            Whenever I'm not out running, this is the space where I write about
+            software development and other personal interests.
           </HeroSub>
         </HeroTextGroup>
         <ImgContainer>
@@ -52,34 +51,7 @@ const IndexPage: React.FC<IndexPageProps> = props => {
       <TitleWithCTA title="Work" ctaText="See portfolio" ctaTo="/work/" />
       <Paragraph>
         I’m an Amsterdam-based freelance full-stack JavaScript developer that is
-        looking for challenging projects with social or sustainable impact. Most
-        of my current time is spent coding in React (Native) and NodeJS.
-      </Paragraph>
-      <TitleWithCTA
-        title="Running"
-        ctaText="Go to Strava"
-        ctaHref="https://www.strava.com/athletes/gersom"
-      />
-      <Paragraph>
-        One of the activities that define me is running. I share this passion
-        with my crew, the Amsterdam Running Junkies. I mostly run on the road
-        but I’m in my happiest state when I’m on a mountain trail. I’m a firm
-        believer in the benefits of barefoot running, so I run all my runs in
-        minimal shoes.
-      </Paragraph>
-      <TitleWithCTA
-        title="Veganism"
-        ctaText="Download Plenty"
-        ctaHref="http://onelink.to/qy8s2q"
-      />
-      <Paragraph>
-        I have a huge interest in sustainability and I believe that veganism is
-        the way forward. It’s the ultimate win-win-win, cutting back on
-        emissions and land use, improving people’s health, and helping us to
-        learn to respect all kinds of animals. To help people in the Netherlands
-        with the initial threshold of becoming vegan, I built an app called
-        Plenty. This app helps them to find (accidentally) vegan products in the
-        supermarket.
+        looking for challenging projects with social or sustainable impact.
       </Paragraph>
     </Layout>
   );
