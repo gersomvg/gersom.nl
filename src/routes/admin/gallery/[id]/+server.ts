@@ -19,15 +19,14 @@ const validatePatchBody = ajv.compile({
 export const PATCH: RequestHandler = async ({ params, request }) => {
 	const body = await request.json()
 	if (!validatePatchBody(body)) throw error(400)
-	const id = params.slug
+	const { id } = params
 
 	db.prepare(
 		`
 		UPDATE images
 		SET
 			caption = COALESCE(?, caption),
-			isFeatured = COALESCE(?, isFeatured),
-			updated = CURRENT_TIMESTAMP
+			isFeatured = COALESCE(?, isFeatured)
 		WHERE id = ?
 	`,
 	).run(body.caption, body.isFeatured, id)
@@ -59,6 +58,6 @@ export const PATCH: RequestHandler = async ({ params, request }) => {
 }
 
 export const DELETE: RequestHandler = ({ params }) => {
-	db.prepare('DELETE FROM images WHERE id = ?').run(params.slug)
+	db.prepare('DELETE FROM images WHERE id = ?').run(params.id)
 	return new Response('OK')
 }

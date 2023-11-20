@@ -1,20 +1,33 @@
 <script lang="ts">
-	import { debounce } from '@github/mini-throttle'
+	import debounce from 'lodash-es/debounce'
+	import { invalidateAll } from '$app/navigation'
 	import { getSrcset } from '$lib/cdn/images'
 	import type { PageData } from './$types'
 
 	export let data: PageData
-	let images = data.images
+	$: images = data.images
 
 	let draggingIndex: number | null = null
 	let draggingOverIndex: number | null = null
+
+	async function upload(event: Event) {
+		const files = (event.currentTarget as HTMLInputElement).files
+		if (!files) return
+		const formData = new FormData()
+		for (const file of files) formData.append('file', file)
+		await fetch('/admin/gallery', {
+			method: 'POST',
+			body: formData,
+		})
+		invalidateAll()
+	}
 
 	async function reinsert(fromIndex: number, toIndex: number) {
 		const withoutFrom = images.filter((_, index) => index !== fromIndex)
 		const image = images[fromIndex]
 		images = withoutFrom
 			.slice(0, toIndex)
-			.concat(images[fromIndex])
+			.concat(image)
 			.concat(withoutFrom.slice(toIndex))
 			.map((image, index) => {
 				image.sequence = index + 1
@@ -53,15 +66,33 @@
 		})
 	}
 
-	function onDrop(event: DragEvent) {
+	function onDrop(event: DragEvent, toIndex: number) {
 		if (event.target != null && event.target instanceof HTMLElement) {
 			const fromIndex = Number(event.dataTransfer?.getData('text'))
-			const toIndex = Number(event.target.dataset.index)
 			reinsert(fromIndex, toIndex)
 		}
 	}
 </script>
 
+<div class="mb-10">
+	<label class="cursor-pointer rounded bg-gray-200 px-5 py-3">
+		<svg
+			class="mb-1.5 mr-2 inline h-5 w-5 align-middle"
+			xmlns="http://www.w3.org/2000/svg"
+			fill="currentColor"
+			viewBox="0 0 20 20"
+		>
+			<path
+				d="m14.707 4.793-4-4a1 1 0 0 0-1.416 0l-4 4a1 1 0 1 0 1.416 1.414L9 3.914V12.5a1 1 0 0 0 2 0V3.914l2.293 2.293a1 1 0 0 0 1.414-1.414Z"
+			/>
+			<path
+				d="M18 12h-5v.5a3 3 0 0 1-6 0V12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"
+			/>
+		</svg>
+		Upload
+		<input type="file" accept="image/png, image/jpeg" hidden multiple on:change={upload} />
+	</label>
+</div>
 <div class="-mb-10 flex flex-wrap justify-between">
 	{#each images as image, index}
 		<div class="mb-10">
@@ -74,7 +105,6 @@
 				class:scale-90={draggingIndex === index}
 				class:ring={draggingOverIndex === index && draggingOverIndex !== draggingIndex}
 				draggable="true"
-				data-index={index}
 				on:dragstart={(e) => {
 					draggingIndex = index
 					e.dataTransfer?.setData('text', '' + index)
@@ -83,7 +113,7 @@
 				on:dragenter={() => (draggingOverIndex = index)}
 				on:dragleave={() => (draggingOverIndex = null)}
 				on:dragover={(e) => e.preventDefault()}
-				on:drop={onDrop}
+				on:drop={(e) => onDrop(e, index)}
 			/>
 			<div class="mb-2 flex space-x-2">
 				<button

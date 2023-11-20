@@ -6,6 +6,17 @@ export interface Image {
 	caption: string
 	isFeatured: number
 	sequence: number
+}
+
+export interface Post {
+	id: number
 	created: string
-	updated: string
+	slug: string
+	summary: string
+	draft: string
+	content: string
+	tags: string
+	isPublished: number
+	isListed: number
+	isFeatured: number
 }
