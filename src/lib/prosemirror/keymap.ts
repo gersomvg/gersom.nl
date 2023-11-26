@@ -40,6 +40,12 @@ export function buildKeymap(schema: Schema) {
 		dispatch?.(state.tr.removeMark(state.selection.from, state.selection.to, marks.link))
 		return true
 	})
+	bind('Ctrl-@', (state, dispatch) => {
+		dispatch?.(
+			state.tr.addMark(state.selection.from, state.selection.to, marks.dynamic_email.create()),
+		)
+		return true
+	})
 	bind('Ctrl-c', toggleMark(marks.code))
 	bind('Shift-Ctrl-8', wrapInList(nodes.bullet_list))
 	bind('Shift-Ctrl-9', wrapInList(nodes.ordered_list))

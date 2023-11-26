@@ -79,7 +79,7 @@
 					class="absolute bottom-1/2 left-0 right-0 top-0 bg-gradient-to-t from-gray-75 to-gray-75/0 dark:from-gray-925 dark:to-gray-925/0"
 				/>
 				<a
-					href="/posts/{tag.toLowerCase()}"
+					href="/posts?tag={tag.toLowerCase()}"
 					class="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap p-3 font-semibold text-gray-900 hover:opacity-70 dark:text-gray-300 sm:top-3/4"
 				>
 					{'More Posts '}

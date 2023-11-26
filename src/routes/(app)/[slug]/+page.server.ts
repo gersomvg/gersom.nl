@@ -27,6 +27,8 @@ export const load = (async ({ params }) => {
 			summary: post.summary,
 			title: JSON.parse(post.content)[0].content[0].text as string,
 			html: doc.getElementsByTagName('div')[0].innerHTML,
+			isListed: post.isListed,
+			created: post.created,
 		},
 	}
 }) satisfies PageServerLoad

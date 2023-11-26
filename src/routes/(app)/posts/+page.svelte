@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation'
 	import { initUIDGenerator } from '$lib/uid-store'
 	import type { PageData } from './$types'
 
@@ -8,20 +9,6 @@
 		'This is the space where I write about all things software development, my avid trail- and ultra running hobby, or any other random brain dumps.'
 
 	const tags = ['All', 'Coding', 'Running', 'Other']
-	const monthLabels = [
-		'Jan',
-		'Feb',
-		'Mar',
-		'Apr',
-		'May',
-		'Jun',
-		'Jul',
-		'Aug',
-		'Sep',
-		'Oct',
-		'Nov',
-		'Dec',
-	]
 
 	const uid = initUIDGenerator()
 	const tabIds = tags.map((_, idx) => uid('tab' + idx))
@@ -30,7 +17,15 @@
 	let tablist: HTMLDivElement | undefined
 
 	$: selected = data.tag
-	$: isSelected = (category: string) => category.toLowerCase() === selected
+
+	$: isSelected = (tag: string) => {
+		return tag.toLowerCase() === selected
+	}
+
+	function setSelectedTag(tag: string) {
+		selected = tag.toLowerCase()
+		goto('/posts/?tag=' + tag.toLowerCase(), { keepFocus: true })
+	}
 
 	function onTabKeydown(e: KeyboardEvent) {
 		if (tablist == null || e.target == null) return
@@ -58,7 +53,7 @@
 		<div
 			class="mb-1 flex flex-wrap sm:-mx-4"
 			role="tablist"
-			aria-label="Post categories"
+			aria-label="Post tags"
 			bind:this={tablist}
 		>
 			{#each tags as tag, idx}
@@ -69,7 +64,7 @@
 					aria-controls={tabpanelIds[idx]}
 					id={tabIds[idx]}
 					tabindex={isSelected(tag) ? 0 : -1}
-					on:click={() => (selected = tag.toLowerCase())}
+					on:click={() => setSelectedTag(tag)}
 					on:keydown={(e) => onTabKeydown(e)}
 				>
 					<span class="mx-2 my-3 inline-block [text-decoration:inherit]">{tag}</span>

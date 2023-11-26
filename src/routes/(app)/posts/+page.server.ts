@@ -12,8 +12,12 @@ function isTagInList(list: string, tag: string) {
 	return list.split(',').includes(tag)
 }
 
-export const load = (async ({ params }) => {
-	if (params.tag && !['all', 'coding', 'running', 'other'].includes(params.tag)) {
+export const load = (async ({ request }) => {
+	// request.url is used instead of using url.searchParams, to prevent dependency tracking from
+	// reloading this function whenever the user presses on one of the tag tabs
+	const tag = new URLSearchParams(request.url.split('?').pop()).get('tag') || 'all'
+
+	if (!['all', 'coding', 'running', 'other'].includes(tag)) {
 		throw error(404)
 	}
 
@@ -30,5 +34,5 @@ export const load = (async ({ params }) => {
 		coding: posts.filter((post) => isTagInList(post.tags, 'coding')),
 	}
 
-	return { postsPerTag, tag: params.tag?.toLowerCase() || 'all' }
+	return { postsPerTag, tag: tag?.toLowerCase() || 'all' }
 }) satisfies PageServerLoad

@@ -1,5 +1,6 @@
 import { addListNodes } from 'prosemirror-schema-list'
 import { Schema, type NodeSpec, type MarkSpec, type DOMOutputSpec } from 'prosemirror-model'
+import { getSrcset } from '$lib/cdn/images'
 
 const pDOM: DOMOutputSpec = ['p', 0],
 	hrDOM: DOMOutputSpec = ['hr'],
@@ -40,10 +41,9 @@ const nodes = {
 	} as NodeSpec,
 
 	title: {
-		content: 'inline*',
+		content: 'text*',
 		defining: true,
 		marks: '',
-		parseDOM: [{ tag: 'h1' }],
 		toDOM() {
 			return ['h1', 0]
 		},
@@ -56,6 +56,7 @@ const nodes = {
 		defining: true,
 		marks: 'link em',
 		parseDOM: [
+			{ tag: 'h1', attrs: { level: 1 } },
 			{ tag: 'h2', attrs: { level: 1 } },
 			{ tag: 'h3', attrs: { level: 2 } },
 		],
@@ -81,31 +82,72 @@ const nodes = {
 	} as NodeSpec,
 
 	image: {
-		inline: true,
 		attrs: {
-			src: {},
-			alt: { default: null },
-			title: { default: null },
+			filename: {},
+			width: {},
+			height: {},
+			size: { default: 1 },
+			alt: { default: '' },
 		},
-		group: 'inline',
+		content: 'text*',
+		group: 'block',
 		draggable: true,
+		defining: false,
+		isolating: true,
 		parseDOM: [
 			{
-				tag: 'img[src]',
+				tag: 'figure',
+				contentElement: 'figcaption',
 				getAttrs(dom: HTMLElement) {
+					let img = dom.querySelector('img') as HTMLImageElement | null
+					console.log(img && img.naturalWidth / img.naturalHeight)
+
 					return {
-						src: dom.getAttribute('src'),
-						title: dom.getAttribute('title'),
-						alt: dom.getAttribute('alt'),
+						filename: img?.srcset?.match(/prent.gersom.nl\/([0-9a-z-]+\.(jpeg|jpg|png))/i)?.[1],
+						size: Number(img?.dataset.size || 1),
+						width: img?.dataset.width,
+						height: img?.dataset.height,
 					}
 				},
 			},
 		],
 		toDOM(node) {
-			let { src, alt, title } = node.attrs
-			return ['img', { src, alt, title }]
+			let { filename, width, height, size, alt } = node.attrs
+			const xxsPB = Math.round((height / width) * 100 * (1 / 2 + size / 2))
+			const xxsW = Math.round(100 * (0.5 + size / 2))
+			const xsPB = Math.round((height / width) * 100 * (1 / 3 + size / 1.5))
+			const xsW = Math.round(100 * (1 / 3 + size / 1.5))
+			const smPB = Math.round((height / width) * 100 * size)
+			const smW = Math.round(100 * size)
+			return [
+				'figure',
+				[
+					'div',
+					{
+						class:
+							'overflow-hidden relative mx-auto w-[--xxs-w] pb-[--xxs-pb] xs:w-[--xs-w] xs:pb-[--xs-pb] sm:w-[--sm-w] sm:pb-[--sm-pb]',
+						style: `--xxs-pb:${xxsPB}%;--xxs-w:${xxsW}%;--xs-pb:${xsPB}%;--xs-w:${xsW}%;--sm-pb:${smPB}%;--sm-w:${smW}%;`,
+					},
+					[
+						'img',
+						{
+							alt,
+							'sizes': '(min-width: 1024px) 684px, (min-width: 640px) 588px, 100vw',
+							'srcset': getSrcset(filename),
+							'style': 'object-fit:cover;',
+							'class': 'absolute inset-0 w-full h-full',
+							'contentEditable': false,
+							'data-size': size,
+							'data-width': width,
+							'data-height': height,
+						},
+					],
+				],
+				['figcaption', 0],
+			]
 		},
 	} as NodeSpec,
+	//sizes={'(min-width: 1024px) 33vw, (min-width: 640px) 42vw, 100vw'}
 
 	hard_break: {
 		inline: true,
@@ -122,11 +164,7 @@ const emDOM: DOMOutputSpec = ['em', 0],
 	strongDOM: DOMOutputSpec = ['strong', 0],
 	codeDOM: DOMOutputSpec = ['code', 0]
 
-/// [Specs](#model.MarkSpec) for the marks in the schema.
-export const marks = {
-	/// A link. Has `href` and `title` attributes. `title`
-	/// defaults to the empty string. Rendered and parsed as an `<a>`
-	/// element.
+const marks = {
 	link: {
 		attrs: {
 			href: {},
@@ -136,7 +174,7 @@ export const marks = {
 			{
 				tag: 'a[href]',
 				getAttrs(dom: HTMLElement) {
-					return { href: dom.getAttribute('href'), title: dom.getAttribute('title') }
+					return { href: dom.getAttribute('href') }
 				},
 			},
 		],
@@ -146,8 +184,24 @@ export const marks = {
 		},
 	} as MarkSpec,
 
-	/// An emphasis mark. Rendered as an `<em>` element. Has parse rules
-	/// that also match `<i>` and `font-style: italic`.
+	dynamic_email: {
+		inclusive: false,
+		parseDOM: [
+			{
+				tag: 'a[data-dynamic-email]',
+			},
+		],
+		toDOM(node) {
+			let { href } = node.attrs
+			const today = new Date()
+			const day = today.getDate()
+			const month = (today.getMonth() + 1).toString().padStart(2, '0')
+			const year = today.getFullYear()
+			const ddmmyyyy = `${day}+${month}+${year}`
+			return ['a', { 'href': `mailto:${ddmmyyyy}@gersom.nl`, 'data-dynamic-email': true }, 0]
+		},
+	} as MarkSpec,
+
 	em: {
 		parseDOM: [
 			{ tag: 'i' },
@@ -160,8 +214,6 @@ export const marks = {
 		},
 	} as MarkSpec,
 
-	/// A strong mark. Rendered as `<strong>`, parse rules also match
-	/// `<b>` and `font-weight: bold`.
 	strong: {
 		parseDOM: [
 			{ tag: 'strong' },
@@ -180,7 +232,6 @@ export const marks = {
 		},
 	} as MarkSpec,
 
-	/// Code font mark. Represented as a `<code>` element.
 	code: {
 		parseDOM: [{ tag: 'code' }],
 		toDOM() {

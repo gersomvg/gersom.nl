@@ -2,7 +2,7 @@
 	import { onMount, onDestroy } from 'svelte'
 	import { EditorState } from 'prosemirror-state'
 	import { EditorView } from 'prosemirror-view'
-	import { Node } from 'prosemirror-model'
+	import { Fragment, Node } from 'prosemirror-model'
 	import { dropCursor } from 'prosemirror-dropcursor'
 	import { gapCursor } from 'prosemirror-gapcursor'
 	import { keymap } from 'prosemirror-keymap'
@@ -14,6 +14,7 @@
 	import { buildKeymap } from '$lib/prosemirror/keymap'
 	import { buildInputRules } from '$lib/prosemirror/inputrules'
 	import { hyperlinks } from '$lib/prosemirror/plugins/hyperlink'
+	import { images, insertPlaceholder, replacePlaceholder } from '$lib/prosemirror/plugins/images'
 	import 'prosemirror-view/style/prosemirror.css'
 	import 'prosemirror-gapcursor/style/gapcursor.css'
 	import throttle from 'lodash-es/throttle'
@@ -106,6 +107,33 @@
 		}
 	}
 
+	const upload = async (event: Event) => {
+		event.preventDefault()
+		editorView.focus()
+		const id = {}
+		editorView.dispatch(insertPlaceholder(editorState, id))
+		const file = (event.currentTarget as HTMLInputElement)?.files?.[0]
+		if (!file) return
+		const formData = new FormData()
+		formData.append('file', file)
+		try {
+			const response = await fetch('/admin/image', {
+				method: 'POST',
+				body: formData,
+			})
+			const { key, width, height } = await response.json()
+			const replacePlaceholderTr = replacePlaceholder(
+				editorState,
+				id,
+				schema.nodes.image.create({ filename: key, width, height }),
+			)
+			if (replacePlaceholderTr) editorView.dispatch(replacePlaceholderTr)
+		} catch {
+			const removePlaceholderTr = replacePlaceholder(editorState, id)
+			if (removePlaceholderTr) editorView.dispatch(removePlaceholderTr)
+		}
+	}
+
 	onMount(() => {
 		editorState = EditorState.create({
 			doc: Node.fromJSON(schema, {
@@ -121,6 +149,7 @@
 				gapCursor(),
 				history(),
 				hyperlinks({ markType: schema.marks.link }),
+				images(),
 			],
 		})
 
@@ -129,11 +158,11 @@
 			{
 				state: editorState,
 				dispatchTransaction(transaction) {
-					const oldDocString = editorState.doc.toString()
+					const oldDoc = JSON.stringify(editorState.doc.toJSON())
 					editorState = editorState.apply(transaction)
-					// console.log(editorState.toJSON())
+					//console.log(editorState.toJSON())
 					editorView.updateState(editorState)
-					if (oldDocString !== editorState.doc.toString()) save()
+					if (oldDoc !== JSON.stringify(editorState.doc.toJSON())) save()
 				},
 			},
 		)
@@ -239,6 +268,12 @@
 		</div>
 		<div bind:this={element} class="focus:outline-none" />
 	</div>
+	<label
+		class="fixed bottom-4 right-12 h-6 rounded-full border border-white bg-gray-600 px-2 text-xs leading-5 text-white shadow-lg"
+	>
+		IMG
+		<input type="file" accept="image/png, image/jpeg" hidden on:change={upload} />
+	</label>
 	<div
 		class="pointer-events-none fixed bottom-4 right-4 h-6 w-6 rounded-full border border-white bg-green-600 shadow-lg"
 		class:animate-pulse={saving}

@@ -1,5 +1,5 @@
 .ProseMirror {
-	@apply text-gray-900 caret-current dark:text-gray-100;
+	@apply text-base leading-relaxed text-gray-900 caret-current dark:text-gray-100 sm:text-lg lg:text-xl;
 }
 
 .ProseMirror h1,
@@ -9,29 +9,29 @@
 }
 
 .ProseMirror h1 {
-	@apply mb-4 text-xl sm:mb-5 sm:text-2xl lg:mb-6 lg:text-3xl;
+	@apply mb-4f text-xl sm:text-2xl lg:text-3xl;
 }
 
 .ProseMirror h2 {
-	@apply mb-3 text-lg sm:mb-4 sm:text-xl lg:mb-5 lg:text-2xl;
+	@apply mb-3f text-lg sm:text-xl lg:text-2xl;
 }
 
 .ProseMirror h3 {
-	@apply mb-2 text-base sm:mb-3 sm:text-lg lg:mb-4 lg:text-xl;
+	@apply mb-2f;
 }
 
 .ProseMirror p,
 .ProseMirror ul,
 .ProseMirror ol {
-	@apply mb-4 text-base leading-relaxed sm:text-lg lg:mb-5 lg:text-xl;
+	@apply my-4f;
 }
 
 .ProseMirror hr {
-	@apply my-6 border-t border-gray-900 sm:-mx-1.5 lg:my-7;
+	@apply my-6f border-t border-gray-900 sm:-mx-1.5;
 }
 
 .ProseMirror pre {
-	@apply my-4 rounded bg-slate-900 p-3 text-gray-100 sm:-mx-1.5 lg:my-6;
+	@apply my-4f rounded bg-slate-900 p-3f text-gray-100 sm:-mx-1.5;
 }
 
 .ProseMirror code {
@@ -46,9 +46,21 @@
 	@apply mx-0.5 rounded bg-blue-700/10 px-1.5 py-0.5 dark:bg-blue-400/30;
 }
 
+.ProseMirror figure {
+	@apply mb-5f mt-6f sm:-mx-1.5;
+}
+
+.ProseMirror figure img {
+	@apply rounded;
+}
+
+.ProseMirror figcaption {
+	@apply mt-2f text-center text-sm opacity-75 sm:text-base lg:text-lg;
+}
+
 .ProseMirror ul,
 .ProseMirror ol {
-	@apply list-outside pl-6 sm:pl-7 lg:pl-8;
+	@apply list-outside pl-7f;
 }
 
 .ProseMirror ul {
@@ -63,7 +75,7 @@
 .ProseMirror ol ol,
 .ProseMirror ul ol,
 .ProseMirror ol ul {
-	@apply pl-3 sm:pl-4 lg:pl-5;
+	@apply pl-3f;
 }
 
 .ProseMirror ul ul {
@@ -80,6 +92,11 @@
 
 .ProseMirror li {
 	@apply mb-0.5 list-item pl-1 sm:mb-1 sm:pl-2 lg:mb-1.5;
+}
+
+.ProseMirror li > p:first-child,
+.ProseMirror blockquote > p:first-child {
+	@apply mt-0;
 }
 
 .ProseMirror li > p:last-child,

@@ -1,7 +1,7 @@
 import { chainCommands, exitCode, newlineInCode } from 'prosemirror-commands'
 import schema from './schema'
 import { liftListItem, sinkListItem, splitListItem } from 'prosemirror-schema-list'
-import { TextSelection, type Command } from 'prosemirror-state'
+import { TextSelection, type Command, EditorState } from 'prosemirror-state'
 
 const { nodes, marks } = schema
 
