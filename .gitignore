@@ -9,3 +9,5 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 /database/*.db
+/database/*.db-shm
+/database/*.db-wal
