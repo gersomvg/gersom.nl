@@ -20,6 +20,9 @@
 	<a href="/admin/gallery" class="text-lg font-semibold text-blue-800 underline dark:text-blue-300">
 		Gallery
 	</a>
+	<a href="/admin/strava" class="text-lg font-semibold text-blue-800 underline dark:text-blue-300">
+		Strava
+	</a>
 	<form method="post" action="/auth?/logout" use:enhance>
 		<button
 			type="submit"

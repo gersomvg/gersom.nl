@@ -154,9 +154,31 @@ VALUES
     0
   );
 
+CREATE TABLE
+  strava (
+    id INTEGER PRIMARY KEY CHECK (id = 1),
+    updated TEXT NOT NULL CHECK (
+      updated IS STRFTIME('%Y-%m-%dT%H:%M:%fZ', updated)
+    ),
+    accessToken TEXT,
+    refreshToken TEXT,
+    expires TEXT CHECK (
+      expires IS NULL
+      OR expires IS STRFTIME('%Y-%m-%dT%H:%M:%fZ', expires)
+    ),
+    data JSON
+  );
+
+INSERT INTO
+  strava (id, updated)
+VALUES
+  (1, STRFTIME('%Y-%m-%dT%H:%M:%fZ', 'now'));
+
 --------------------------------------------------------------------------------
 -- Down
 --------------------------------------------------------------------------------
+DROP TABLE strava;
+
 DROP TABLE posts;
 
 DROP TABLE images;
