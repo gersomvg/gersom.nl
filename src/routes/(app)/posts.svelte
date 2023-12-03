@@ -32,7 +32,7 @@
 	<div class="flex flex-wrap" role="tablist" aria-label="Post categories" bind:this={tablist}>
 		{#each tags as tag, idx}
 			<button
-				class="flex-auto border-b border-black/10 bg-clip-padding px-px text-center text-sm font-semibold text-gray-500 first:rounded-tl-lg-px first:pl-0 last:rounded-tr-lg-px last:pr-0 focus:outline-none focus-visible:ring focus-visible:ring-gray-500 aria-selected:border-x aria-selected:border-b-0 aria-selected:bg-gray-75 aria-selected:px-0 aria-selected:pb-px aria-selected:text-gray-900 aria-selected:underline aria-selected:first:border-l-0 aria-selected:last:border-r-0 dark:border-white/10 dark:text-gray-400 dark:aria-selected:bg-gray-925 dark:aria-selected:text-gray-300 xl:text-base"
+				class="z-0 flex-auto border-b border-black/10 bg-clip-padding px-px text-center text-sm font-semibold text-gray-500 first:rounded-tl-lg-px first:pl-0 last:rounded-tr-lg-px last:pr-0 focus:outline-none focus-visible:z-10 focus-visible:ring focus-visible:ring-gray-500 aria-selected:border-x aria-selected:border-b-0 aria-selected:bg-gray-75 aria-selected:px-0 aria-selected:pb-px aria-selected:text-gray-900 aria-selected:underline aria-selected:first:border-l-0 aria-selected:last:border-r-0 dark:border-white/10 dark:text-gray-400 dark:aria-selected:bg-gray-925 dark:aria-selected:text-gray-300 xl:text-base"
 				role="tab"
 				aria-selected={isSelected(tag)}
 				aria-controls={tabpanelIds[idx]}

@@ -1,3 +1,7 @@
+<script>
+	import { enhance } from '$app/forms'
+</script>
+
 <div class="m-5 flex flex-wrap items-center justify-center space-x-4">
 	<a
 		href="/"
@@ -10,12 +14,20 @@
 			/>
 		</svg>
 	</a>
-	<a href="/admin/posts" class="text-lg font-semibold text-blue-800 underline dark:text-blue-300"
-		>Posts</a
-	>
-	<a href="/admin/gallery" class="text-lg font-semibold text-blue-800 underline dark:text-blue-300"
-		>Gallery</a
-	>
+	<a href="/admin/posts" class="text-lg font-semibold text-blue-800 underline dark:text-blue-300">
+		Posts
+	</a>
+	<a href="/admin/gallery" class="text-lg font-semibold text-blue-800 underline dark:text-blue-300">
+		Gallery
+	</a>
+	<form method="post" action="/auth?/logout" use:enhance>
+		<button
+			type="submit"
+			class="inline text-lg font-semibold text-blue-800 underline dark:text-blue-300"
+		>
+			Logout
+		</button>
+	</form>
 </div>
 
 <svelte:head>

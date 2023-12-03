@@ -100,8 +100,6 @@ const nodes = {
 				contentElement: 'figcaption',
 				getAttrs(dom: HTMLElement) {
 					let img = dom.querySelector('img') as HTMLImageElement | null
-					console.log(img && img.naturalWidth / img.naturalHeight)
-
 					return {
 						filename: img?.srcset?.match(/prent.gersom.nl\/([0-9a-z-]+\.(jpeg|jpg|png))/i)?.[1],
 						size: Number(img?.dataset.size || 1),
