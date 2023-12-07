@@ -23,21 +23,19 @@ if (!building) {
 		'0 */1 * * *',
 		async () => {
 			try {
-				fetch('https://hc-ping.com/065054a2-0044-4485-a614-8a7a2ec1596b/start').catch(() => {})
 				await syncData()
 				fetch('https://hc-ping.com/065054a2-0044-4485-a614-8a7a2ec1596b').catch(() => {})
 			} catch {
 				fetch('https://hc-ping.com/065054a2-0044-4485-a614-8a7a2ec1596b/fail').catch(() => {})
 			}
 			try {
-				fetch('https://hc-ping.com/7c2484b0-af64-46f9-99e9-1aadc9226345/start').catch(() => {})
 				await backup()
 				fetch('https://hc-ping.com/7c2484b0-af64-46f9-99e9-1aadc9226345').catch(() => {})
 			} catch (e) {
 				fetch('https://hc-ping.com/7c2484b0-af64-46f9-99e9-1aadc9226345/fail').catch(() => {})
 			}
 		},
-		{ runOnInit: true },
+		{ runOnInit: false },
 	)
 }
 
