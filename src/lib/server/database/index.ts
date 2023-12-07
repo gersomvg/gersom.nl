@@ -7,7 +7,7 @@ export const db = new Database(
 	building
 		? ':memory:'
 		: env.PRODUCTION === 'true'
-		? 'data/db/database.db'
+		? 'var/lib/data/database.db'
 		: 'database/database.db',
 )
 
