@@ -58,7 +58,7 @@
 					<li>
 						<a
 							href="/{post.slug}"
-							class="mx-3 block border-b border-black/10 px-2 py-4 text-gray-900 dark:border-white/10 dark:text-gray-300 md:py-5"
+							class="mx-3 block border-black/10 px-2 py-4 text-gray-900 dark:border-white/10 dark:text-gray-300 md:py-5"
 							class:border-b={index + 1 < postsPerTag[tag.toLowerCase()].length}
 						>
 							<span class="block font-bold md:text-lg">

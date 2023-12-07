@@ -14,14 +14,14 @@
 	] as const
 </script>
 
-<div class="flex flex-1 flex-col justify-center p-5 sm:p-3 md:p-5">
+<div class="flex flex-1 flex-col justify-center p-3 md:p-5 lg:py-10">
 	<h1
-		class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-300 sm:text-xl md:mb-5 md:text-2xl xl:mb-6 xl:text-3xl"
+		class="mb-4 break-words text-2xl font-bold text-gray-900 dark:text-gray-300 sm:text-xl md:mb-5 md:text-2xl xl:mb-6 xl:text-3xl"
 	>
 		Gersom van Ginkel
 	</h1>
 	<p
-		class="text-lg leading-relaxed text-gray-900 dark:text-gray-300 sm:text-base md:text-lg xl:text-xl"
+		class="break-words text-lg leading-relaxed text-gray-900 dark:text-gray-300 sm:text-base md:text-lg xl:text-xl"
 	>
 		Avid long-distance runner from Amsterdam with a love for mountains, currently on a sabbatical
 		from software development, chasing kiwis on the other side of the world.

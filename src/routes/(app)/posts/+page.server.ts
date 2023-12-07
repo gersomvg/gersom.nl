@@ -1,5 +1,5 @@
 import { db } from '$lib/server/database'
-import type { Post } from '$lib/server/models'
+import type { Post } from '$lib/server/database/schema'
 import { error } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 

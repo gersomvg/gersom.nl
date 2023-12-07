@@ -160,6 +160,7 @@ CREATE TABLE
     updated TEXT NOT NULL CHECK (
       updated IS STRFTIME('%Y-%m-%dT%H:%M:%fZ', updated)
     ),
+    userId INTEGER,
     accessToken TEXT,
     refreshToken TEXT,
     expires TEXT CHECK (
@@ -170,9 +171,13 @@ CREATE TABLE
   );
 
 INSERT INTO
-  strava (id, updated)
+  strava (id, updated, data)
 VALUES
-  (1, STRFTIME('%Y-%m-%dT%H:%M:%fZ', 'now'));
+  (
+    1,
+    STRFTIME('%Y-%m-%dT%H:%M:%fZ', 'now'),
+    '{"stats":{"biggest_ride_distance":117424,"biggest_climb_elevation_gain":null,"recent_ride_totals":{"count":0,"distance":0,"moving_time":0,"elapsed_time":0,"elevation_gain":0,"achievement_count":0},"all_ride_totals":{"count":55,"distance":2102960,"moving_time":311463,"elapsed_time":414249,"elevation_gain":7776},"recent_run_totals":{"count":18,"distance":206023.52001953125,"moving_time":59753,"elapsed_time":72388,"elevation_gain":812,"achievement_count":89},"all_run_totals":{"count":1489,"distance":15320339,"moving_time":5299713,"elapsed_time":5961427,"elevation_gain":190039},"recent_swim_totals":{"count":0,"distance":0,"moving_time":0,"elapsed_time":0,"elevation_gain":0,"achievement_count":0},"all_swim_totals":{"count":34,"distance":29536,"moving_time":54938,"elapsed_time":69362,"elevation_gain":10},"ytd_ride_totals":{"count":4,"distance":50517,"moving_time":7067,"elapsed_time":7341,"elevation_gain":187},"ytd_run_totals":{"count":202,"distance":2697087,"moving_time":1024743,"elapsed_time":1193589,"elevation_gain":57685},"ytd_swim_totals":{"count":12,"distance":12584,"moving_time":17756,"elapsed_time":27852,"elevation_gain":5}}}'
+  );
 
 --------------------------------------------------------------------------------
 -- Down

@@ -3,7 +3,7 @@ import type { JSONSchemaType } from '$lib/ajv'
 import type { RequestHandler } from './$types'
 import { error } from '@sveltejs/kit'
 import { db } from '$lib/server/database'
-import type { Post } from '$lib/server/models'
+import type { Post } from '$lib/server/database/schema'
 
 const updatePost = db.prepare(`
 	UPDATE

@@ -4,7 +4,7 @@
 </script>
 
 <div class="flex min-h-full items-center justify-center text-gray-900">
-	<form class="space-y-5 p-5" method="post" action="auth?/login" use:enhance>
+	<form class="space-y-5 p-5" method="post" action="/auth?/login" use:enhance>
 		<h1 class="text-xl font-bold dark:text-gray-100">Login</h1>
 		<input
 			type="text"

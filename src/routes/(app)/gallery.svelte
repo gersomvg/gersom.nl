@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getSrcset } from '$lib/cdn/images'
 	import IconSprite from '$lib/icon-sprite.svelte'
-	import type { Image } from '$lib/server/models'
+	import type { Image } from '$lib/server/database/schema'
 
 	export let images: Image[]
 
@@ -39,19 +39,19 @@
 		<button
 			on:click={() =>
 				(activeIndex = (activeIndex + images.length + (pos === 'l' ? -1 : +1)) % images.length)}
-			class="group/b absolute bottom-0 top-0 z-20 flex w-1/3 justify-end text-white focus:outline-none"
-			class:left-0={pos === 'l'}
-			class:rotate-180={pos === 'l'}
+			class="group/b absolute z-20 h-full w-1/3 text-white focus:outline-none"
+			class:rotate-180={pos === 'r'}
 			class:right-0={pos === 'r'}
 			aria-label={pos === 'l' ? 'Previous' : 'Next'}
 		>
 			<div
-				class="absolute inset-0 bg-gradient-to-l from-black/20 to-black/0 opacity-0 transition group-hover/b:opacity-100 group-focus-visible/b:opacity-100"
-			/>
-			<IconSprite
-				name="chevron-right"
-				class="mr-4 h-full w-4 self-center opacity-40 drop-shadow transition group-hover/a:group-hover/b:opacity-100 group-hover/a:opacity-60 group-focus-visible/b:opacity-100"
-			/>
+				class="flex h-full w-full rounded-l-lg bg-gradient-to-r from-black/20 to-black/0 opacity-0 transition group-hover/b:opacity-100 group-focus-visible/b:opacity-100"
+			>
+				<IconSprite
+					name="chevron-left"
+					class="ml-4 h-full w-4 self-center justify-self-start opacity-40 drop-shadow transition group-hover/a:group-hover/b:opacity-100 group-hover/a:opacity-60 group-focus-visible/b:opacity-100"
+				/>
+			</div>
 		</button>
 	{/each}
 	<div

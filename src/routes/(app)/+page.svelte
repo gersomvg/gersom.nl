@@ -3,6 +3,7 @@
 	import Gallery from './gallery.svelte'
 	import Bio from './bio.svelte'
 	import Posts from './posts.svelte'
+	import Strava from './strava.svelte'
 
 	export let data: PageData
 </script>
@@ -12,20 +13,21 @@
 </svelte:head>
 <div class="-mt-4 pb-8 pt-4 sm:p-5 md:p-6 lg:p-7">
 	<div
-		class="mx-auto max-w-md sm:grid sm:max-w-7xl sm:grid-flow-col sm:grid-cols-12 sm:gap-5 md:gap-6 lg:gap-7"
+		class="mx-auto max-w-md grid-flow-col auto-rows-max grid-cols-10 sm:grid sm:max-w-7xl sm:gap-5 md:grid-cols-9 md:gap-6 lg:grid-cols-12 lg:gap-7"
 	>
-		<div class="flex items-stretch overflow-hidden sm:col-span-5 sm:row-span-5 lg:col-span-4">
-			<Bio />
-		</div>
 		<div
-			class="flex items-stretch max-sm:my-3 max-sm:px-3 sm:col-span-5 sm:row-span-4 sm:row-start-6 lg:col-span-4"
+			class="col-span-5 row-span-1 flex min-w-0 flex-col space-y-5 max-sm:px-3 md:col-span-4 md:space-y-6 lg:space-y-7"
 		>
+			<Bio />
 			<Gallery images={data.images} />
 		</div>
-		<div
-			class="flex items-stretch max-sm:my-8 max-sm:px-3 sm:col-span-7 sm:row-span-9 lg:col-span-5"
-		>
+		<div class="col-span-5 row-span-2 flex min-w-0 flex-col max-sm:my-5 max-sm:px-3 lg:row-span-1">
 			<Posts postsPerTag={data.postsPerTag} />
+		</div>
+		<div
+			class="col-span-5 row-span-1 flex min-w-0 items-start max-lg:col-start-1 max-lg:row-start-2 max-sm:px-3 md:col-span-4 md:col-start-1 lg:col-span-3"
+		>
+			<Strava data={data.strava} />
 		</div>
 	</div>
 </div>

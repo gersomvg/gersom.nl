@@ -1,5 +1,5 @@
 import { db } from '$lib/server/database'
-import type { Post } from '$lib/server/models'
+import type { Post } from '$lib/server/database/schema'
 import { DOMSerializer, Fragment } from 'prosemirror-model'
 import schema from '$lib/prosemirror/schema'
 import { Window } from 'happy-dom'

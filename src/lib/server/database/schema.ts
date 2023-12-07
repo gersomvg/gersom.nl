@@ -20,3 +20,13 @@ export interface Post {
 	isListed: number
 	isFeatured: number
 }
+
+export interface Strava {
+	id: 1
+	updated: string
+	userId: number | null
+	accessToken: string | null
+	refreshToken: string | null
+	expires: string | null
+	data: string | null
+}

@@ -1,5 +1,5 @@
 import { db } from '$lib/server/database'
-import type { Image } from '$lib/server/models'
+import type { Image } from '$lib/server/database/schema'
 import type { PageServerLoad } from './$types'
 
 export const load = (async () => {

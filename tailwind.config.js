@@ -6,6 +6,14 @@ export default {
 			screens: {
 				xs: '480px',
 			},
+			flex: {
+				2: '2 2 0%',
+				3: '3 3 0%',
+				4: '4 4 0%',
+				5: '5 5 0%',
+				6: '6 6 0%',
+				full: '0 1 101% ',
+			},
 			gridRow: {
 				'span-7': 'span 7 / span 7',
 				'span-8': 'span 8 / span 8',

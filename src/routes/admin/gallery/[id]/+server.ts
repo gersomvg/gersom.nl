@@ -1,7 +1,7 @@
 import { ajv } from '$lib/ajv'
 import type { JSONSchemaType } from '$lib/ajv'
 import { db } from '$lib/server/database'
-import type { Image } from '$lib/server/models'
+import type { Image } from '$lib/server/database/schema'
 import { error } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 
