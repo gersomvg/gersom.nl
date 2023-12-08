@@ -7,7 +7,7 @@ import { env } from '$env/dynamic/private'
 export const backup = async () => {
 	await db.backup('/tmp/db-backup')
 	await new Promise<void>((resolve, reject) => {
-		exec('pigz -f /tmp/db-backup', (error, stdout, stderr) => {
+		exec('gzip -f /tmp/db-backup', (error, stdout, stderr) => {
 			if (error || stderr) reject()
 			else resolve()
 		})
