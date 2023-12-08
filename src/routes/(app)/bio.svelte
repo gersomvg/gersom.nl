@@ -23,8 +23,8 @@
 	<p
 		class="break-words text-lg leading-relaxed text-gray-900 dark:text-gray-300 sm:text-base md:text-lg xl:text-xl"
 	>
-		Avid long-distance runner from Amsterdam with a love for mountains, currently on a sabbatical
-		from software development, chasing kiwis on the other side of the world.
+		Avid long-distance runner from Amsterdam with a love for mountains, currently settling back in
+		at home, after a year-long sabbatical chasing kiwis on the other side of the world.
 	</p>
 	<div class="-mx-3 mt-4 flex space-x-4 md:mt-5 xl:mt-6">
 		{#each socials as [title, name, href]}
