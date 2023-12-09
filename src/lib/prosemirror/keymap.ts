@@ -12,7 +12,7 @@ import { undo, redo } from 'prosemirror-history'
 import { undoInputRule } from 'prosemirror-inputrules'
 import type { Command } from 'prosemirror-state'
 import type { Schema } from 'prosemirror-model'
-import { insertHardBreak, handleEnter, handleTab, handleShiftTab } from './commands'
+import { insertHardBreak, handleEnter, handleTab, handleShiftTab, insertSplit } from './commands'
 
 const mac = typeof navigator != 'undefined' ? /Mac|iP(hone|[oa]d)/.test(navigator.platform) : false
 
@@ -36,6 +36,7 @@ export function buildKeymap(schema: Schema) {
 	bind('Mod-B', toggleMark(marks.strong))
 	bind('Mod-i', toggleMark(marks.em))
 	bind('Mod-I', toggleMark(marks.em))
+	bind('Ctrl-s', toggleMark(marks.small))
 	bind('Ctrl-l', (state, dispatch) => {
 		dispatch?.(state.tr.removeMark(state.selection.from, state.selection.to, marks.link))
 		return true
@@ -53,6 +54,7 @@ export function buildKeymap(schema: Schema) {
 	bind('Mod-Enter', insertHardBreak)
 	bind('Shift-Enter', insertHardBreak)
 	if (mac) bind('Ctrl-Enter', insertHardBreak)
+	bind('Ctrl-D', insertSplit)
 	bind('Enter', handleEnter)
 	bind('Tab', handleTab)
 	bind('Shift-Tab', handleShiftTab)

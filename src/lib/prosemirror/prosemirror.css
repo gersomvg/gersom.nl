@@ -13,11 +13,11 @@
 }
 
 .ProseMirror h2 {
-	@apply mb-3f text-lg sm:text-xl lg:text-2xl;
+	@apply mb-3f mt-6f text-lg sm:text-xl lg:text-2xl;
 }
 
 .ProseMirror h3 {
-	@apply mb-2f;
+	@apply mb-2f mt-4f;
 }
 
 .ProseMirror p,
@@ -26,20 +26,40 @@
 	@apply my-4f;
 }
 
+.ProseMirror div[data-split] {
+	@apply my-4f xs:flex;
+}
+
+.ProseMirror[contenteditable='true'] div[data-split] {
+	@apply outline-dashed;
+}
+
+.ProseMirror div[data-split-left] {
+	@apply xs:w-40 sm:w-44 lg:w-52;
+}
+
+.ProseMirror div[data-split-right] {
+	@apply flex-1 pl-2f max-xs:pt-1f xs:pl-5f;
+}
+
 .ProseMirror hr {
 	@apply my-6f border-t border-gray-900 sm:-mx-1.5;
 }
 
 .ProseMirror pre {
-	@apply my-4f rounded bg-slate-900 p-3f text-gray-100 sm:-mx-1.5;
+	@apply my-4f overflow-auto whitespace-pre rounded bg-slate-900 p-3f text-gray-100 sm:-mx-1.5;
 }
 
 .ProseMirror code {
-	@apply text-sm leading-relaxed sm:text-base lg:text-lg;
+	@apply text-xs sm:text-sm lg:text-base;
 }
 
 .ProseMirror a {
 	@apply cursor-pointer border-b-2 border-blue-700/30 font-medium text-blue-700 transition-all hover:-mx-1 hover:rounded hover:border-blue-700/50 hover:bg-blue-700/5 hover:p-1 dark:border-blue-400/40 dark:text-blue-400 dark:hover:border-blue-400/60 dark:hover:bg-blue-400/20;
+}
+
+.ProseMirror small {
+	@apply text-xs text-gray-900/80 dark:text-gray-100/80 sm:text-sm lg:text-base;
 }
 
 .ProseMirror p code {
@@ -95,11 +115,15 @@
 }
 
 .ProseMirror li > p:first-child,
+.ProseMirror [data-split-left] > p:first-child,
+.ProseMirror [data-split-right] > p:first-child,
 .ProseMirror blockquote > p:first-child {
 	@apply mt-0;
 }
 
 .ProseMirror li > p:last-child,
+.ProseMirror [data-split-left] > p:last-child,
+.ProseMirror [data-split-right] > p:last-child,
 .ProseMirror blockquote > p:last-child {
 	@apply mb-0;
 }

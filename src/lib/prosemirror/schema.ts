@@ -65,6 +65,49 @@ const nodes = {
 		},
 	} as NodeSpec,
 
+	split: {
+		content: 'split_left split_right',
+		group: 'block',
+		draggable: true,
+		parseDOM: [
+			{
+				tag: 'div',
+				getAttrs: (node) => node instanceof HTMLDivElement && node.dataset.split != null,
+			},
+		],
+		toDOM() {
+			return ['div', { 'data-split': '' }, 0]
+		},
+	} as NodeSpec,
+
+	split_left: {
+		content: 'paragraph+',
+		isolation: true,
+		parseDOM: [
+			{
+				tag: 'div',
+				getAttrs: (node) => node instanceof HTMLDivElement && node.dataset.splitLeft != null,
+			},
+		],
+		toDOM() {
+			return ['div', { 'data-split-left': '' }, 0]
+		},
+	} as NodeSpec,
+
+	split_right: {
+		content: 'paragraph+',
+		isolation: true,
+		parseDOM: [
+			{
+				tag: 'div',
+				getAttrs: (node) => node instanceof HTMLDivElement && node.dataset.splitRight != null,
+			},
+		],
+		toDOM() {
+			return ['div', { 'data-split-right': '' }, 0]
+		},
+	} as NodeSpec,
+
 	code_block: {
 		content: 'text*',
 		marks: '',
@@ -72,6 +115,7 @@ const nodes = {
 		code: true,
 		defining: true,
 		parseDOM: [{ tag: 'pre', preserveWhitespace: 'full' }],
+		whitespace: 'pre',
 		toDOM() {
 			return preDOM
 		},
@@ -197,6 +241,18 @@ const marks = {
 			const year = today.getFullYear()
 			const ddmmyyyy = `${day}+${month}+${year}`
 			return ['a', { 'href': `mailto:${ddmmyyyy}@gersom.nl`, 'data-dynamic-email': true }, 0]
+		},
+	} as MarkSpec,
+
+	small: {
+		parseDOM: [
+			{ tag: 'small' },
+			{ style: 'font-size:x-small' },
+			{ style: 'font-size:xx-small' },
+			{ style: 'font-size:small' },
+		],
+		toDOM() {
+			return ['small', 0]
 		},
 	} as MarkSpec,
 

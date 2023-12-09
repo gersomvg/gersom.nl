@@ -2,11 +2,18 @@ import { chainCommands, exitCode, newlineInCode } from 'prosemirror-commands'
 import schema from './schema'
 import { liftListItem, sinkListItem, splitListItem } from 'prosemirror-schema-list'
 import { TextSelection, type Command, EditorState } from 'prosemirror-state'
+import { Fragment } from 'prosemirror-model'
 
 const { nodes, marks } = schema
 
 export const insertHardBreak: Command = chainCommands(exitCode, (state, dispatch) => {
 	if (dispatch) dispatch(state.tr.replaceSelectionWith(nodes.hard_break.create()).scrollIntoView())
+	return true
+})
+
+export const insertSplit: Command = chainCommands(exitCode, (state, dispatch) => {
+	const newSplit = nodes.split.createAndFill()
+	if (dispatch && newSplit) dispatch(state.tr.replaceSelectionWith(newSplit).scrollIntoView())
 	return true
 })
 
