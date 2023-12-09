@@ -4,7 +4,9 @@
 	$: isHome = ['', '/'].includes($page.url.pathname)
 </script>
 
-<nav class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-gray-100 xs:text-base sm:px-6">
+<nav
+	class="px-4 pb-10 pt-3 text-sm font-semibold text-gray-900 dark:text-gray-100 xs:text-base sm:px-6"
+>
 	<div
 		class="mx-auto flex items-center"
 		class:lg:max-w-7xl={isHome}

@@ -175,8 +175,8 @@
 	})
 </script>
 
-<div class="relative pb-10">
-	<div class="m-auto max-w-lg p-2 sm:max-w-xl sm:p-5 lg:max-w-2xl">
+<div class="relative m-4 mt-10 sm:m-8 lg:mt-10">
+	<div class="m-auto max-w-lg sm:max-w-xl lg:max-w-2xl">
 		<div class="mb-8 rounded bg-gray-100 p-4 text-xs text-gray-900 sm:-mx-1.5">
 			<div class="-ml-3 -mt-3 flex flex-wrap items-center">
 				<fieldset class="ml-3 mt-3">
