@@ -27,7 +27,7 @@
 }
 
 .ProseMirror div[data-split] {
-	@apply my-4f xs:flex;
+	@apply my-8f xs:flex;
 }
 
 .ProseMirror[contenteditable='true'] div[data-split] {
