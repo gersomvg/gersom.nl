@@ -47,11 +47,7 @@
 }
 
 .ProseMirror pre {
-	@apply my-4f overflow-auto whitespace-pre rounded bg-slate-900 p-3f text-gray-100 sm:-mx-1.5;
-}
-
-.ProseMirror code {
-	@apply text-xs sm:text-sm lg:text-base;
+	@apply my-4f overflow-auto whitespace-pre rounded bg-slate-900 p-3f text-xs text-gray-100 sm:-mx-1.5 sm:text-sm lg:text-base;
 }
 
 .ProseMirror a {
@@ -63,7 +59,7 @@
 }
 
 .ProseMirror p code {
-	@apply mx-0.5 rounded bg-blue-700/10 px-1.5 py-0.5 dark:bg-blue-400/30;
+	@apply mx-0.5 rounded bg-blue-700/10 px-1.5 py-0.5 text-sm dark:bg-blue-400/30 sm:text-base lg:text-lg;
 }
 
 .ProseMirror figure {

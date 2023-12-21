@@ -28,7 +28,7 @@
 	{#if !data.post.isListed}<meta name="robots" content="noindex" />{/if}
 </svelte:head>
 
-<div class="m-4 sm:m-8 lg:mt-10">
+<div class="m-4 pb-8 sm:m-8 lg:mt-10">
 	<div class="ProseMirror m-auto max-w-lg sm:max-w-xl lg:max-w-2xl">
 		{#if data.post.isListed}
 			<div class="-mt-2f mb-4f text-center text-sm font-medium opacity-60">
