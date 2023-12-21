@@ -5,6 +5,7 @@ import { building } from '$app/environment'
 import { syncData } from '$lib/server/strava/sync'
 import { db } from '$lib/server/database'
 import { backup } from '$lib/server/database/backup'
+import { ping } from '$lib/server/ping'
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.isAuthenticated = event.cookies.get('token') === env.ADMIN_TOKEN
@@ -24,19 +25,15 @@ if (!building) {
 		async () => {
 			try {
 				await syncData()
-				if (env.PRODUCTION === 'true')
-					fetch('https://hc-ping.com/065054a2-0044-4485-a614-8a7a2ec1596b').catch(() => {})
+				ping('stravaSync')
 			} catch {
-				if (env.PRODUCTION === 'true')
-					fetch('https://hc-ping.com/065054a2-0044-4485-a614-8a7a2ec1596b/fail').catch(() => {})
+				ping('stravaSync', 'fail')
 			}
 			try {
 				await backup()
-				if (env.PRODUCTION === 'true')
-					fetch('https://hc-ping.com/7c2484b0-af64-46f9-99e9-1aadc9226345').catch(() => {})
+				ping('sqliteBackup')
 			} catch (e) {
-				if (env.PRODUCTION === 'true')
-					fetch('https://hc-ping.com/7c2484b0-af64-46f9-99e9-1aadc9226345/fail').catch(() => {})
+				ping('sqliteBackup', 'fail')
 			}
 		},
 		{ runOnInit: false },
