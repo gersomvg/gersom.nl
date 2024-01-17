@@ -30,4 +30,7 @@ export const generateCV = async () => {
 	writeStream.on('close', async () => {
 		await browser.close()
 	})
+	writeStream.on('error', (error) => {
+		throw error
+	})
 }
