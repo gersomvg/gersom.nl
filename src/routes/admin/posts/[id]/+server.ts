@@ -62,6 +62,9 @@ export const PATCH: RequestHandler = async ({ params, request }) => {
 		body.isFeatured,
 		id,
 	)
+	console.log('saved')
+	console.log(body.slug === 'work' && prevPost.content !== body.content)
+	console.log(body.slug)
 	if (body.slug === 'work' && prevPost.content !== body.content)
 		generateCV().catch((e) => {
 			console.log('Failed to generate new cv.pdf')

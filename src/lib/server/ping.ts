@@ -3,7 +3,6 @@ import { env } from '$env/dynamic/private'
 const checks = {
 	stravaSync: 'https://hc-ping.com/065054a2-0044-4485-a614-8a7a2ec1596b',
 	sqliteBackup: 'https://hc-ping.com/7c2484b0-af64-46f9-99e9-1aadc9226345',
-	test: 'https://hc-ping.com/32a08201-a68d-43b6-ab76-837b9c587685',
 } as const
 
 export function ping(
