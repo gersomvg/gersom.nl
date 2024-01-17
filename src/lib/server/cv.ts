@@ -1,20 +1,22 @@
 import { env } from '$env/dynamic/private'
 import fs from 'node:fs'
 import puppeteer from 'puppeteer'
+import { ping } from './ping'
 
 export const generateCV = async () => {
 	console.warn('loading puppeteer...')
+	ping('test', 'success', { body: 'loading puppeteer...' })
 	const browser = await puppeteer.launch({ headless: 'new' })
 
 	const cvURL = 'http://' + (env.HOST || 'localhost') + ':' + (env.PORT || '3000') + '/admin/cv'
-	console.log(cvURL)
+	ping('test', 'success', { body: cvURL })
 	const cvHTML = await (
 		await fetch(cvURL, {
 			credentials: 'include',
 			headers: { Cookie: 'token=' + env.ADMIN_TOKEN },
 		})
 	).text()
-	console.log(cvHTML)
+	ping('test', 'success', { body: cvHTML })
 
 	const page = await browser.newPage()
 	await page.setContent(cvHTML, { waitUntil: ['domcontentloaded'] })
