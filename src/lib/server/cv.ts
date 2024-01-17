@@ -3,6 +3,7 @@ import fs from 'node:fs'
 import puppeteer from 'puppeteer'
 
 export const generateCV = async () => {
+	console.warn('loading puppeteer...')
 	const browser = await puppeteer.launch({ headless: 'new' })
 
 	const cvURL = 'http://' + (env.HOST || 'localhost') + ':' + (env.PORT || '3000') + '/admin/cv'
