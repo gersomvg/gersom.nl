@@ -6,12 +6,14 @@ export const generateCV = async () => {
 	const browser = await puppeteer.launch({ headless: 'new' })
 
 	const cvURL = 'http://' + (env.HOST || 'localhost') + ':' + (env.PORT || '3000') + '/admin/cv'
+	console.log(cvURL)
 	const cvHTML = await (
 		await fetch(cvURL, {
 			credentials: 'include',
 			headers: { Cookie: 'token=' + env.ADMIN_TOKEN },
 		})
 	).text()
+	console.log(cvHTML)
 
 	const page = await browser.newPage()
 	await page.setContent(cvHTML, { waitUntil: ['domcontentloaded'] })
