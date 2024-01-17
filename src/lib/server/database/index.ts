@@ -8,7 +8,7 @@ export const db = new Database(
 		? ':memory:'
 		: env.PRODUCTION === 'true'
 		? '/var/lib/data/database.db'
-		: 'database/database.db',
+		: 'temp/database/database.db',
 )
 
 // Needed for Litestream

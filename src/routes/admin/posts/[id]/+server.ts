@@ -4,6 +4,9 @@ import type { RequestHandler } from './$types'
 import { error } from '@sveltejs/kit'
 import { db } from '$lib/server/database'
 import type { Post } from '$lib/server/database/schema'
+import { generateCV } from '$lib/server/cv'
+
+const selectPost = db.prepare('SELECT * FROM posts WHERE id = ?')
 
 const updatePost = db.prepare(`
 	UPDATE
@@ -47,6 +50,7 @@ export const PATCH: RequestHandler = async ({ params, request }) => {
 	const body = await request.json()
 	if (!validatePatchBody(body)) throw error(400)
 	const { id } = params
+	const prevPost = selectPost.get(id) as Post
 	updatePost.run(
 		body.slug,
 		body.summary,
@@ -58,6 +62,11 @@ export const PATCH: RequestHandler = async ({ params, request }) => {
 		body.isFeatured,
 		id,
 	)
+	if (body.slug === 'work' && prevPost.content !== body.content)
+		generateCV().catch((e) => {
+			console.log('Failed to generate new cv.pdf')
+			console.log(e)
+		})
 	return new Response('OK')
 }
 

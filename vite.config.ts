@@ -6,4 +6,12 @@ export default defineConfig({
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}'],
 	},
+	server: {
+		port: 3000,
+		strictPort: true,
+	},
+	preview: {
+		port: 3000,
+		strictPort: true,
+	},
 })
