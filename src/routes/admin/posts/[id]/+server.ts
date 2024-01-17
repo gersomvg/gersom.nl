@@ -51,7 +51,7 @@ export const PATCH: RequestHandler = async ({ params, request }) => {
 	const body = await request.json()
 	if (!validatePatchBody(body)) throw error(400)
 	const { id } = params
-	//const prevPost = selectPost.get(id) as Post
+	const prevPost = selectPost.get(id) as Post
 	updatePost.run(
 		body.slug,
 		body.summary,
@@ -63,14 +63,11 @@ export const PATCH: RequestHandler = async ({ params, request }) => {
 		body.isFeatured,
 		id,
 	)
-	// console.log('saved')
-	// console.log(body.slug === 'work' && prevPost.content !== body.content)
-	// console.log(body.slug)
-	// if (body.slug === 'work' && prevPost.content !== body.content)
-	// 	generateCV().catch((e) => {
-	// 		console.log('Failed to generate new cv.pdf')
-	// 		console.log(e)
-	// 	})
+	if (body.slug === 'work' && prevPost.content !== body.content)
+		generateCV().catch((e) => {
+			console.log('Failed to generate new cv.pdf')
+			console.log(e)
+		})
 	return new Response('OK')
 }
 

@@ -3,7 +3,6 @@ import fs from 'node:fs'
 import puppeteer from 'puppeteer'
 
 export const generateCV = async () => {
-	console.log('loading puppeteer...')
 	const browser = await puppeteer.launch({ headless: 'new' })
 
 	const cvURL = 'http://' + (env.HOST || 'localhost') + ':' + (env.PORT || '3000') + '/admin/cv'
@@ -14,7 +13,6 @@ export const generateCV = async () => {
 			headers: { Cookie: 'token=' + env.ADMIN_TOKEN },
 		})
 	).text()
-	console.log(cvHTML)
 
 	const page = await browser.newPage()
 	await page.setContent(cvHTML, { waitUntil: ['domcontentloaded'] })
