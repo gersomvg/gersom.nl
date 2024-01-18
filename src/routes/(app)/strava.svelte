@@ -5,8 +5,10 @@
 	export let data: PageData['strava']
 
 	function format(distance: number | null) {
-		return `${Math.round((distance ?? 0) / 1000).toLocaleString()}km`
+		return `${Math.round((distance ?? 0) / 1000).toLocaleString()}`
 	}
+
+	const currentYear = new Date().getFullYear()
 </script>
 
 <div
@@ -16,16 +18,18 @@
 	{#if data?.stats}
 		<div class="-mx-3 overflow-auto">
 			<table class="my-5">
-				{#each [{ label: 'Month', data: data.stats.recent_run_totals }, { label: 'Year', data: data.stats.ytd_run_totals }, { label: 'Total', data: data.stats.all_run_totals }] as row, index}
+				{#each [{ label: '4 Weeks', data: data.stats.recent_run_totals }, { label: currentYear, data: data.stats.ytd_run_totals }, { label: 'Total', data: data.stats.all_run_totals }] as row, index}
 					<tr
 						data-even={(index + 1) % 2 === 0 || undefined}
 						class="data-[even]:bg-orange-600/5 dark:data-[even]:bg-orange-600/10"
 					>
 						<td class="whitespace-nowrap py-1 pl-3"><b>{row.label}:</b></td>
-						<td class="w-full py-1 pr-3 text-right">{format(row.data.distance)}</td>
+						<td class="w-full py-1 pr-3 text-right">
+							{format(row.data.distance)}<span class="text-xs">km</span>
+						</td>
 						<td class="whitespace-nowrap py-1 pr-3 text-right">
-							({format(row.data.elevation_gain)}
-							<IconSprite name="mountain" class="inline-block h-4 w-4" />)
+							{format(row.data.elevation_gain)}<span class="text-xs">km</span>
+							<IconSprite name="mountain" class="inline-block h-3 w-3" />
 						</td>
 					</tr>
 				{/each}
