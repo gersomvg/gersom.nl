@@ -5,6 +5,14 @@
 	export let data: PageData
 </script>
 
+<svelte:head>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+		rel="stylesheet"
+	/>
+</svelte:head>
 <div class="ProseMirror">
 	<div class="flex justify-between">
 		<div class="flex flex-col justify-between">
@@ -25,5 +33,10 @@
 	:global(html),
 	:global(body) {
 		@apply bg-white;
+	}
+
+	.ProseMirror {
+		font-family: 'Inter', sans-serif;
+		font-optical-sizing: auto;
 	}
 </style>
