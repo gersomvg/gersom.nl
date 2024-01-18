@@ -4,22 +4,12 @@ import puppeteer from 'puppeteer'
 
 export const generateCV = async () => {
 	const browser = await puppeteer.launch({ headless: 'new' })
-
 	const cvURL = 'http://' + (env.HOST || 'localhost') + ':' + (env.PORT || '3000') + '/admin/cv'
-	console.log(cvURL)
-	const cvHTML = await (
-		await fetch(cvURL, {
-			credentials: 'include',
-			headers: { Cookie: 'token=' + env.ADMIN_TOKEN },
-		})
-	).text()
-
 	const page = await browser.newPage()
-	await page.setContent(cvHTML, { waitUntil: ['domcontentloaded'] })
+	await page.setCookie({ name: 'token', value: env.ADMIN_TOKEN, domain: 'localhost' })
+	await page.goto(cvURL, { waitUntil: ['domcontentloaded'] })
 	await page.evaluateHandle('document.fonts.ready')
-
 	const dir = env.PRODUCTION === 'true' ? '/var/lib/data/' : 'temp/'
-
 	const pdf = await page.createPDFStream({
 		format: 'A4',
 		scale: 0.86,

@@ -47,7 +47,6 @@ const validatePatchBody = ajv.compile({
 } as JSONSchemaType<PatchBody>)
 
 export const PATCH: RequestHandler = async ({ params, request }) => {
-	console.log('PATCH')
 	const body = await request.json()
 	if (!validatePatchBody(body)) throw error(400)
 	const { id } = params
