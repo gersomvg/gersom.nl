@@ -33,7 +33,7 @@
 		"tslib": "2.4.1",
 		"tsx": "3.12.7",
 		"typescript": "5.1.6",
-		"vite": "4.4.9",
+		"vite": "4.5.2",
 		"vitest": "0.32.2"
 	},
 	"type": "module",
