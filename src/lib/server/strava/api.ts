@@ -70,13 +70,13 @@ type StravaStatsTotalsWithAchievements = StravaStatsTotals & { achievement_count
 export type StravaStats = {
 	biggest_ride_distance: number | null
 	biggest_climb_elevation_gain: number | null
-	recent_ride_totals: StravaStatsTotalsWithAchievements
-	recent_run_totals: StravaStatsTotalsWithAchievements
-	recent_swim_totals: StravaStatsTotalsWithAchievements
-	ytd_ride_totals: StravaStatsTotals
-	ytd_run_totals: StravaStatsTotals
-	ytd_swim_totals: StravaStatsTotals
-	all_ride_totals: StravaStatsTotals
-	all_run_totals: StravaStatsTotals
-	all_swim_totals: StravaStatsTotals
+	recent_ride_totals: StravaStatsTotalsWithAchievements | null
+	recent_run_totals: StravaStatsTotalsWithAchievements | null
+	recent_swim_totals: StravaStatsTotalsWithAchievements | null
+	ytd_ride_totals: StravaStatsTotals | null
+	ytd_run_totals: StravaStatsTotals | null
+	ytd_swim_totals: StravaStatsTotals | null
+	all_ride_totals: StravaStatsTotals | null
+	all_run_totals: StravaStatsTotals | null
+	all_swim_totals: StravaStatsTotals | null
 }

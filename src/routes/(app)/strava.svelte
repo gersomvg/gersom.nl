@@ -4,7 +4,7 @@
 
 	export let data: PageData['strava']
 
-	function format(distance: number | null) {
+	function format(distance: number | null | undefined) {
 		return `${Math.round((distance ?? 0) / 1000).toLocaleString()}`
 	}
 
@@ -25,10 +25,10 @@
 					>
 						<td class="whitespace-nowrap py-1 pl-3"><b>{row.label}:</b></td>
 						<td class="w-full py-1 pr-3 text-right">
-							{format(row.data.distance)}<span class="text-xs">km</span>
+							{format(row.data?.distance)}<span class="text-xs">km</span>
 						</td>
 						<td class="whitespace-nowrap py-1 pr-3 text-right">
-							{format(row.data.elevation_gain)}<span class="text-xs">km</span>
+							{format(row.data?.elevation_gain)}<span class="text-xs">km</span>
 							<IconSprite name="mountain" class="inline-block h-3 w-3" />
 						</td>
 					</tr>

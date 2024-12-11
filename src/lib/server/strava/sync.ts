@@ -30,6 +30,7 @@ export const syncData = async ({ skipExpiryCheck = false, skip401Refresh = false
 
 	try {
 		const statsData = await stats(strava.accessToken, strava.userId)
+		console.log(statsData)
 		const existingData = strava.data ? JSON.parse(strava.data) : {}
 		updateStravaStats.run(
 			JSON.stringify({ ...existingData, stats: statsData }),
